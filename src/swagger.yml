@@ -1,0 +1,111 @@
+swagger: "2.0"
+info:
+  description: "daizu online judgeのAPIドキュメントです"
+  version: "0.1.0"
+  title: "daizu online judge"
+  termOfService: "no"
+  contact: "nemu0sou@gmail.com"
+  license: "no"
+host: "localhost"
+basePath: "v1"
+tags:
+  - name: "user"
+    description: "ユーザーに関するもの"
+  - name: "contest"
+    description: "コンテストに関するもの"
+  - name: "admin"
+    description: "アドミンに関するもの"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /home:
+    get:
+      tags:
+        - "home"
+      summary: "onlinejudgeのホーム"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                name:
+                  $ref: "#/definitions/ContestName"
+                date:
+                  $ref: "#/definitions/Date"
+                time:
+                  $ref: "#/definitions/Time"
+                contestContent:
+                  $ref: "#/definitions/ContestContent"
+  /contests:
+    get:
+      tags:
+        - "contest"
+      summary: "get contests infomation"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                name:
+                  $ref: "#/definitions/ContestName"
+                date:
+                  $ref: "#/definitions/Date"
+                time:
+                  $ref: "#/definitions/Time"
+                problemNumber:
+                  type: "integer"
+                  example: 4
+
+  /contests/{contest_id}/top:
+    get:
+      tags:
+        - "contest"
+      parameters:
+        - name: "contest_id"
+          in: "path"
+          description: "コンテストを特定するもの"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "object"
+            properties:
+              name:
+                $ref: "#/definitions/ContestName"
+              date:
+                $ref: "#/definitions/Date"
+              time:
+                $ref: "#/definitions/Time"
+
+  /contest/{contest}/problems:
+    get:
+      tags:
+        - "contest"
+          
+definitions:
+  ContestName:
+    type: "string"
+    example: "ICT Welcome Contest"
+  ContestContent:
+    type: "string"
+    example: "ICT委員会が開催する新入生歓迎コンテストです."
+  ContestImage:
+    type: "string"
+    example: "https://daizu-online-judge.hoge/images/13"
+    description: "コンテストに登録された画像のURL"
+  Date:
+    type: "string"
+    example: "2019/01/01"
+  Time:
+    type: "string"
+    example: "17:00:00-18:30:00"
