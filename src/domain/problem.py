@@ -1,9 +1,12 @@
 class Problem:
-    def __init__(self, problem_name: str, problem_text: str, problem_constraint: str,\
+    def __init__(self, contest_id: str, problem_id: str,\
+                       problem_name: str, problem_text: str, problem_constraint: str,\
                        time_limit: int, memory_limit: int,\
-                       input_format : str, input_example: str, input_comment=none: str,\
-                       output_format: str, output_example: str, output_comment=none: str):
+                       input_format: str, input_example: str, output_example: str, \
+                       output_format: str, input_comment=None, output_comment=None):
 
+        self.contest_id = contest_id
+        self.problem_id = problem_id
         self.problem_name = problem_name
         self.problem_text = problem_text
         self.problem_constraint = problem_constraint
