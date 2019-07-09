@@ -1,20 +1,20 @@
 class Problem:
     def __init__(
-            self,
-            contest_id: str,
-            problem_id: str,
-            problem_name: str,
-            problem_text: str,
-            problem_constraint: str,
-            time_limit: int,
-            memory_limit: int,
-            input_format: str,
-            input_example: str,
-            output_example: str,
-            output_format: str,
-            input_comment=None,
-            output_comment=None,
-        ):
+        self,
+        contest_id: str,
+        problem_id: str,
+        problem_name: str,
+        problem_text: str,
+        problem_constraint: str,
+        time_limit: int,
+        memory_limit: int,
+        input_format: str,
+        input_example: str,
+        output_example: str,
+        output_format: str,
+        input_comment=None,
+        output_comment=None,
+    ):
 
         self.contest_id = contest_id
         self.problem_id = problem_id
