@@ -10,5 +10,6 @@ install:
   - pip install -r requirements-dev.txt
 
 script:
-  - find src/ -name "*.py" | xargs pylint
+  - black . --check
+  - find ./ -name "*.py" | isort --check-only
   - pytest
