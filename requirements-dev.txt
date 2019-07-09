@@ -5,6 +5,7 @@ attrs==19.1.0
 black==19.3b0
 click==7.0
 importlib-metadata==0.18
+isort==4.3.21
 more-itertools==7.1.0
 packaging==19.0
 pluggy==0.12.0
