@@ -1,11 +1,11 @@
-import psycopg2
 from typing import List, Union
+
+import psycopg2
+
 from domain.User.user import User
-from interface.database.sqlhandler import (
-    SqlHandler as AbsSqlHandler,
-    Result as AbsResult,
-    Cursor as AbsCursor,
-)
+from interface.database.sqlhandler import Cursor as AbsCursor
+from interface.database.sqlhandler import Result as AbsResult
+from interface.database.sqlhandler import SqlHandler as AbsSqlHandler
 
 
 class Result(AbsResult):

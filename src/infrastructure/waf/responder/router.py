@@ -1,6 +1,7 @@
 import responder
-from interface.controllers.user_controller import UserController
+
 from infrastructure.database.postgres.sqlhandler import SqlHandler
+from interface.controllers.user_controller import UserController
 
 
 def set_route(api: responder.API) -> None:
