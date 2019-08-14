@@ -2,9 +2,9 @@ import psycopg2
 from typing import List, Union
 from domain.User.user import User
 from interface.database.sqlhandler import (
-        SqlHandler as AbsSqlHandler,
-        Result as AbsResult,
-        Cursor as AbsCursor
+    SqlHandler as AbsSqlHandler,
+    Result as AbsResult,
+    Cursor as AbsCursor,
 )
 
 
@@ -38,10 +38,10 @@ class SqlHandler(AbsSqlHandler):
         self.password = "soybeanslab"
         try:
             self.connection = psycopg2.connect(
-                    host=self.host,
-                    dbname=self.dbname,
-                    user=self.user,
-                    password=self.password
+                host=self.host,
+                dbname=self.dbname,
+                user=self.user,
+                password=self.password,
             )
         except psycopg2.OperationalError as err:
             raise err
