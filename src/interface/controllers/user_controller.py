@@ -1,5 +1,5 @@
-from domain.User.usecase.user_interactor import UserInteractor
 from domain.User.database.user_repository import UserRepository
+from domain.User.usecase.user_interactor import UserInteractor
 from domain.User.user import User
 from infrastructure.database.postgres.sqlhandler import SqlHandler
 
