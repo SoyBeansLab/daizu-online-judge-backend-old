@@ -1,7 +1,6 @@
 from typing import List
 
-from domain.User.usecase.user_repository import \
-    UserRepository as AbsUserRepository
+from domain.User.usecase.user_repository import UserRepository as AbsUserRepository
 from domain.User.user import User
 from infrastructure.database.postgres.sqlhandler import SqlHandler
 
