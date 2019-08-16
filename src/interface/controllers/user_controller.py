@@ -17,7 +17,5 @@ class UserController:
             resp.status_code = 418
 
     async def users(self, req, resp):
-        resp.media = {
-                "users": [user.as_dict() for user in self.interactor.users()]
-        }
+        resp.media = {"users": [user.as_dict() for user in self.interactor.users()]}
         resp.status_code = 200

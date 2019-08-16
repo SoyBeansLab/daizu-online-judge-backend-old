@@ -6,6 +6,7 @@ class User:
     """
     username: str length <= 16
     """
+
     username: str
 
     def as_dict(self):

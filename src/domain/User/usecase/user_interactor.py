@@ -1,6 +1,7 @@
 from typing import List
-from domain.User.user import User
+
 from domain.User.usecase.user_repository import UserRepository
+from domain.User.user import User
 
 
 class UserInteractor:
