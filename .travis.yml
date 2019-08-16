@@ -11,5 +11,5 @@ install:
 
 script:
   - black . --check
-  - find ./ -name "*.py" | isort --check-only -m 3
+    #- find ./ -name "*.py" | isort --check-only -m 3
     #- pytest
