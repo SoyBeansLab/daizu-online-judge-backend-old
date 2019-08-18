@@ -10,6 +10,6 @@ install:
   - pip install -r requirements-dev.txt
 
 script:
-  - black . --check
+  - black . --check -l 80
     #- find ./ -name "*.py" | isort --check-only -m 3
     #- pytest
