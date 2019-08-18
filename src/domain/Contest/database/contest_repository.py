@@ -1,7 +1,7 @@
 from typing import List
 
 from domain.Contest.usecase.contest_repository import (
-    ContestRepository as AbsContestRepository
+    ContestRepository as AbsContestRepository,
 )
 from domain.Contest.contest import Contest
 from infrastructure.database.postgres.sqlhandler import SqlHandler
@@ -12,9 +12,7 @@ class ContestRepository(AbsContestRepository):
         self.sqlhandler = sqlhandler
 
     def find_all(self) -> List[Contest]:
-        rows = self.sqlhandler.query(
-            "SELECT * FROM contests"
-        ).fetch_all()
+        rows = self.sqlhandler.query("SELECT * FROM contests").fetch_all()
         return [Contest(*row) for row in rows]
 
     def find(self, contest_id: str) -> Contest:
