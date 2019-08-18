@@ -2,7 +2,6 @@ from typing import List, Union
 
 import psycopg2
 
-# from domain.User.user import User
 from interface.database.sqlhandler import Cursor as AbsCursor
 from interface.database.sqlhandler import Result as AbsResult
 from interface.database.sqlhandler import SqlHandler as AbsSqlHandler
@@ -21,13 +20,9 @@ class Cursor(AbsCursor):
         self.cursor = cursor
 
     def fetch_all(self):
-        # def fetch_all(self) -> Union[List[User]]:
-        # return self.cursor.fetchall()
         return self.cursor
 
     def fetch_one(self):
-        # def fetch_one(self) -> Union[User]:
-        # return self.cursor.fetchone()
         if len(self.cursor) == 0:
             return []
         return self.cursor[0]
