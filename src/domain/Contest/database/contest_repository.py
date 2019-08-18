@@ -18,7 +18,7 @@ class ContestRepository(AbsContestRepository):
         return [Contest(*row) for row in rows]
 
     def find(self, contest_id: str) -> Contest:
-        rows = self.sqlhandler.query(
-        ).fetch_all()
-        return [Contest(*row) for row in rows]
+        row = self.sqlhandler.query(
             "SELECT * FROM contests WHERE contest_id=%s", (contest_id,)
+        ).fetch_one()
+        return Contest(*row)
