@@ -14,7 +14,7 @@ class ContestController:
         resp.media = {"contests": contests}
         resp.status_code = 200
 
-    async def contest(self, req, resp, * contest_id):
+    async def contest(self, req, resp, *, contest_id):
         contest = self.interactor.contest(contest_id)
         resp.media = {"contest": contest.as_json()}
         resp.status_code = 200
