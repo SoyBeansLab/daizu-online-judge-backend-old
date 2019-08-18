@@ -13,12 +13,12 @@ class ContestRepository(AbsContestRepository):
 
     def find_all(self) -> List[Contest]:
         rows = self.sqlhandler.query(
-            "SELECT * FROM contest"
+            "SELECT * FROM contests"
         ).fetch_all()
         return [Contest(*row) for row in rows]
 
     def find(self, contest_id: str) -> Contest:
         rows = self.sqlhandler.query(
-            "SELECT * FROM contest WHERE contest_id=%s", (contest_id,)
         ).fetch_all()
         return [Contest(*row) for row in rows]
+            "SELECT * FROM contests WHERE contest_id=%s", (contest_id,)
