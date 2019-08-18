@@ -13,7 +13,7 @@ class Contest:
             contest_description: str,
             problem_number: int,
             ):
-        self.contest_id = self.__generate_id() if contest_id is None: contest_id
+        self.contest_id = contest_id
         self.contest_name = contest_name
         self.contest_date = contest_date
         self.contest_time = contest_time
