@@ -25,6 +25,10 @@ class Contest:
     def __generate_id(self):
         return secrets.token_hex(4)
 
-    def to_dict(self):
+    def as_dict(self):
         return self.__dict__
 
+    def as_json(self):
+        d = self.as_dict()
+        d["contest_date"] = str(d["contest_date"])
+        return d
