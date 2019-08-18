@@ -10,11 +10,11 @@ class ContestController:
     async def contests(self, req, resp):
         contests = []
         for contest in self.interactor.contests():
-            contests.append(contest)
+            contests.append(contest.as_json())
         resp.media = {"contests": contests}
         resp.status_code = 200
 
     async def contest(self, req, resp, * contest_id):
         contest = self.interactor.contest(contest_id)
-        resp.media = {"contest": contest}
+        resp.media = {"contest": contest.as_json()}
         resp.status_code = 200
