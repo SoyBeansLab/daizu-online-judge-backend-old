@@ -1,12 +1,11 @@
 import responder
 
 from infrastructure.database.postgres.sqlhandler import SqlHandler
-from interface.controllers.user_controller import UserController
+from interface.controllers.contest_controller import ContestController
 
 
 def set_route(api: responder.API) -> None:
-    sqlhandler = SqlHandler("doj_user")
-    user_controller = UserController(sqlhandler)
+    contest_controller = ContestController(SqlHandler("contest"))
 
-    api.add_route("/user/create", user_controller.create)
-    api.add_route("/users", user_controller.users)
+    api.add_route("/contests", contest_controller.contests)
+    api.add_route("/contest/{contest_id}", contest_controller.contest)
