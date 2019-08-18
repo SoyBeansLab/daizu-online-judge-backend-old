@@ -28,6 +28,8 @@ class Cursor(AbsCursor):
     def fetch_one(self):
         # def fetch_one(self) -> Union[User]:
         # return self.cursor.fetchone()
+        if len(self.cursor) == 0:
+            return []
         return self.cursor[0]
 
 
