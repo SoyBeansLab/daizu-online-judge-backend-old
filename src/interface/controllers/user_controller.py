@@ -10,7 +10,12 @@ class UserController:
 
     async def create(self, req, resp):
         data = await req.media("json")
-        user = User(data["username"])
+        try:
+            user = User(data["username"])
+        except KeyError:
+            resp.status_code = 400
+            return
+
         if self.interactor.create(user):
             resp.status_code = 201
         else:
