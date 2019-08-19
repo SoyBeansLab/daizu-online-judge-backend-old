@@ -16,5 +16,11 @@ class ProblemController:
 
     async def problem(self, req, resp, *, contest_id, problem_id):
         problem = self.interactor.problem(problem_id)
-        resp.media = {"problem": problem.as_dict()}
-        resp.status_code = 200
+        if problem is None:
+            res_data = None
+            res_code = 400
+        else:
+            res_data = problem.as_dict()
+            res_code = 200
+        resp.media = {"problem": res_data}
+        resp.status_code = res_code

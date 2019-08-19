@@ -21,4 +21,6 @@ class ProblemRepository(AbsProblemRepository):
         row = self.sqlhandler.query(
             "SELECT * FROM problems WHERE problem_id=%s", (problem_id,)
         ).fetch_one()
+        if len(row) == 0:
+            return None
         return Problem(*row)
