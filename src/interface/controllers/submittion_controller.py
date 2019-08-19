@@ -12,7 +12,6 @@ class SubmittionController:
 
     async def submit(self, req, resp, *, contest_id, problem_id):
         data = await req.media("json")
-        resp.media = data
         try:
             submittion = Submittion(
                 username=data["username"],
@@ -26,6 +25,7 @@ class SubmittionController:
             self.interactor.submit(submittion)
             resp.status_code = 201
         except KeyError:
+            resp.media = data
             resp.status_code = 400
 
     async def submittions(self, req, resp, *, contest_id, problem_id):
