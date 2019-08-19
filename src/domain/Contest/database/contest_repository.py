@@ -19,4 +19,6 @@ class ContestRepository(AbsContestRepository):
         row = self.sqlhandler.query(
             "SELECT * FROM contests WHERE contest_id=%s", (contest_id,)
         ).fetch_one()
+        if len(row) == 0:
+            return None
         return Contest(*row)
