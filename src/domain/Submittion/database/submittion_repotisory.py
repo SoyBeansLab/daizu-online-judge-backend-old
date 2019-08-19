@@ -44,4 +44,6 @@ class SubmittionRepository(AbsSubmittionRepository):
         row = self.sqlhandler.query(
             "SELECT * FROM submittions WHERE submit_id=%s", (submit_id,)
         ).fetch_one()
+        if len(row) == 0:
+            return None
         return Submittion(*row)

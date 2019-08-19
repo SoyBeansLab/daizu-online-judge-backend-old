@@ -37,6 +37,10 @@ class SubmittionController:
         resp.status_code = 200
 
     async def submittion(self, req, resp, *, contest_id, problem_id, submit_id):
-        submittion = self.interactor.fetch_submittion(submit_id).as_json()
-        resp.media = {"submittion": submittion}
+        submittion = self.interactor.fetch_submittion(submit_id)
+        if submittion is None:
+            res_data = None
+        else:
+            res_data = submittion.as_json()
+        resp.media = {"submittion": res_data}
         resp.status_code = 200
