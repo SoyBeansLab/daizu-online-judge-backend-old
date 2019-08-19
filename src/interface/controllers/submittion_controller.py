@@ -13,17 +13,20 @@ class SubmittionController:
     async def submit(self, req, resp, *, contest_id, problem_id):
         data = await req.media("json")
         resp.media = data
-        submittion = Submittion(
-            username=data["username"],
-            problem_id=problem_id,
-            language=data["language"],
-            test_case=data["test_case"],
-            source_code=data["source_code"],
-        )
-        resp.media = submittion.as_json()
-        resp.media = submittion.as_json()
-        self.interactor.submit(submittion)
-        resp.status_code = 201
+        try:
+            submittion = Submittion(
+                username=data["username"],
+                problem_id=problem_id,
+                language=data["language"],
+                test_case=data["test_case"],
+                source_code=data["source_code"],
+            )
+            resp.media = submittion.as_json()
+            resp.media = submittion.as_json()
+            self.interactor.submit(submittion)
+            resp.status_code = 201
+        except KeyError:
+            resp.status_code = 400
 
     async def submittions(self, req, resp, *, contest_id, problem_id):
         rows = self.interactor.fetch_submittions(problem_id)
