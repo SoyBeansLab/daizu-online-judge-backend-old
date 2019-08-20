@@ -1,0 +1,241 @@
+swagger: "2.0"
+info:
+  description: "daizu online judgeのAPIドキュメントです"
+  version: "0.1.0"
+  title: "daizu online judge"
+  termOfService: "no"
+  contact: "nemu0sou@gmail.com"
+  license: "no"
+host: "localhost"
+basePath: "v1"
+tags:
+  - name: "user"
+    description: "ユーザーに関するもの"
+  - name: "contest"
+    description: "コンテストに関するもの"
+  - name: "admin"
+    description: "アドミンに関するもの"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /home:
+    get:
+      tags:
+        - "home"
+      summary: "onlinejudgeのホーム"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                name:
+                  $ref: "#/definitions/ContestName"
+                date:
+                  $ref: "#/definitions/Date"
+                time:
+                  $ref: "#/definitions/Time"
+                contestContent:
+                  $ref: "#/definitions/ContestContent"
+  /contests:
+    get:
+      tags:
+        - "contest"
+      summary: "get contests infomation"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                name:
+                  $ref: "#/definitions/ContestName"
+                date:
+                  $ref: "#/definitions/Date"
+                time:
+                  $ref: "#/definitions/Time"
+                problemNumber:
+                  type: "integer"
+                  example: 4
+
+  /contests/{contest_id}/top:
+    get:
+      tags:
+        - "contest"
+      parameters:
+        - name: "contest_id"
+          in: "path"
+          description: "コンテストを特定するもの"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "object"
+            properties:
+              name:
+                $ref: "#/definitions/ContestName"
+              date:
+                $ref: "#/definitions/Date"
+              time:
+                $ref: "#/definitions/Time"
+
+  /contest/{contest_id}/problems:
+    get:
+      tags:
+        - "contest"
+      parameters:
+        - name: "contest_id"
+          in: "path"
+          description: "コンテストを特定するもの"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                problemId:
+                  type: "string"
+                  example: "A"
+                problemName:
+                  type: "string"
+                  example: "AAA"
+                timeLimit:
+                  type: "integer"
+                  format: "int64"
+                  example: 2
+                memoryLimit:
+                  type: "integer"
+                  format: "int64"
+                  example: 2
+                problemScore:
+                  type: "integer"
+                  format: "int64"
+                  example: 100
+
+  /contest/{contest_id}/problems/{problem_id}:
+    get:
+      tags:
+        - "contest"
+      parameters:
+        - name: "contest_id"
+          in: "path"
+          description: "コンテストを特定するもの"
+          required: true
+          type: "integer"
+          format: "int64"
+        - name: "problem_id"
+          in: "path"
+          description: "問題を特定するもの"
+          required: true
+          type: "string"
+          example: "A"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                problem:
+                  $ref: "#/definitions/Problem"
+                Submit:
+                  $ref: "#/definitions/Languages"
+
+  /contest/{contest_id}/submissions:
+    get:
+      tags:
+        - "contest"
+      parameters:
+        - name: "contest_id"
+          in: "path"
+          description: "コンテストを特定するもの"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                # 書く
+
+definitions:
+  ContestName:
+    type: "string"
+    example: "ICT Welcome Contest"
+  ContestContent:
+    type: "string"
+    example: "ICT委員会が開催する新入生歓迎コンテストです."
+  ContestImage:
+    type: "string"
+    example: "https://daizu-online-judge.hoge/images/13"
+    description: "コンテストに登録された画像のURL"
+  Date:
+    type: "string"
+    example: "2019/01/01"
+  Time:
+    type: "string"
+    example: "17:00:00-18:30:00"
+  Problem:
+    type: "object"
+    properties:
+      problemName:
+        type: "string"
+        example: "A + B problem"
+      timeLimit:
+        type: "integer"
+        format: "int64"
+        example: "2"
+        description: "(s)"
+      memoryLimit:
+        type: "integer"
+        format: "int64"
+        example: "2"
+        description: "(MB)"
+      problemText:
+        type: "string"
+        example: "入力AとBが与えられる. その和を求めなさい."
+      problemConstraint:
+        type: "string"
+        example: "0 <= A, B <= 10000"
+        description: "制約"
+      input:
+        type: "string"
+        example: "A B"
+      output:
+        type: "string"
+        example: "AとBの和を求めて出力せよ."
+      inputExam:
+        type: "string"
+        example: "2 3"
+      inputComment:
+        type: "string"
+        example: "入力は１行で与えられる."
+      outputExam:
+        type: "string"
+        example: "5"
+      outputComment:
+        type: "string"
+        example: "行末には改行を入れること."
+  Languages:
+    type: "array"
+    items:
+      type: "string"
+      example: C, C++, Java, Python
