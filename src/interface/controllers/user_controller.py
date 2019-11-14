@@ -22,6 +22,18 @@ class UserController:
             resp.status_code = 418
 
     async def users(self, req, resp):
+        """
+        ---
+        get:
+            description: Get all users
+            responses:
+                200:
+                    description: Users to be returned
+                    contest:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+        """
         resp.media = {
             "users": [UserSchema().dump(user) for user in self.interactor.users()]
         }
