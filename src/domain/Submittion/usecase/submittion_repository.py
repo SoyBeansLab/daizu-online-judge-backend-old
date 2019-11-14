@@ -7,12 +7,12 @@ from domain.Submittion.submittion import Submittion
 class SubmittionRepository(ABC):
     @abstractmethod
     def store(self, submittion: Submittion) -> int:
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def find_all(self, problem_id: str) -> List[Submittion]:
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def find(self, submit_id) -> Submittion:
-        pass
+        raise NotImplementedError()
