@@ -18,6 +18,7 @@ itsdangerous==1.1.0
 jinja2==2.10.1
 markupsafe==1.1.1
 marshmallow==3.0.0rc8
+marshmallow-dataclass==7.1.0
 parse==1.12.0
 pika==1.0.1
 promise==2.2.1
