@@ -35,6 +35,8 @@ class UserController:
                                 $ref: '#/components/schemas/User'
         """
         resp.media = {
-            "users": [UserSchema().dump(user) for user in self.interactor.users()]
+            "users": [
+                UserSchema().dump(user) for user in self.interactor.users()
+            ]
         }
         resp.status_code = 200
