@@ -7,8 +7,8 @@ from domain.Contest.contest import Contest
 class ContestRepository(ABC):
     @abstractmethod
     def find_all(self) -> List[Contest]:
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def find(self, contest_id: str) -> Contest:
-        pass
+        raise NotImplementedError()
