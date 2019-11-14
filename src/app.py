@@ -1,6 +1,6 @@
 import responder
 
-from infrastructure.waf.responder.router import set_route
+from infrastructure.waf.responder.router import set_route, set_schema
 
 
 def main():
@@ -13,6 +13,7 @@ def main():
         description=description
     )
     set_route(api)
+    set_schema(api)
     api.run(address="0.0.0.0", port=5042)
 
 

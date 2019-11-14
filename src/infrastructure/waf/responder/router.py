@@ -1,5 +1,7 @@
 import responder
 
+from domain.User.user import UserSchema
+
 from infrastructure.database.postgres.sqlhandler import SqlHandler
 from interface.controllers.contest_controller import ContestController
 from interface.controllers.problem_controller import ProblemController
@@ -12,6 +14,10 @@ def set_route(api: responder.API) -> None:
     set_route_problem(api)
     set_route_submittion(api)
     set_route_user(api)
+
+
+def set_schema(api: responder.API) -> None:
+    api.add_schema("User", UserSchema)
 
 
 def set_route_contest(api: responder.API) -> None:
