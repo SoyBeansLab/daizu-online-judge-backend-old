@@ -1,6 +1,6 @@
 from domain.User.database.user_repository import UserRepository
 from domain.User.usecase.user_interactor import UserInteractor
-from domain.User.user import User
+from domain.User.user import User, UserSchema
 from infrastructure.database.postgres.sqlhandler import SqlHandler
 
 
@@ -23,6 +23,6 @@ class UserController:
 
     async def users(self, req, resp):
         resp.media = {
-            "users": [user.as_dict() for user in self.interactor.users()]
+            "users": [UserSchema().dump(user) for user in self.interactor.users()]
         }
         resp.status_code = 200
