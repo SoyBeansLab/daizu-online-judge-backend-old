@@ -13,8 +13,5 @@ responder = "~=2.0.5"
 psycopg2-binary = "*"
 pika = "~=1.1.0"
 
-[requires]
-python_version = "3.7"
-
 [pipenv]
 allow_prereleases = true
