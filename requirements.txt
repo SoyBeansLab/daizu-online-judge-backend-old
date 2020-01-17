@@ -1,7 +1,7 @@
 -i https://pypi.org/simple/
 aiofiles==0.4.0
 aniso8601==7.0.0
-apispec==3.1.0
+apispec==3.2.0
 apistar==0.7.2
 certifi==2019.11.28
 chardet==3.0.4
@@ -11,28 +11,28 @@ graphene==2.1.8
 graphql-core==2.2.1
 graphql-relay==2.0.1
 graphql-server-core==1.1.3
-h11==0.8.1
-httptools==0.0.13
+h11==0.9.0
+httptools==0.0.13 ; sys_platform != 'win32' and sys_platform != 'cygwin' and platform_python_implementation != 'pypy'
 idna==2.8
 itsdangerous==1.1.0
 jinja2==2.10.3
 markupsafe==1.1.1
 marshmallow==3.3.0
 pika==1.0.1
-promise==2.2.1
-psycopg2-binary==2.8.3
+promise==2.3
+psycopg2-binary==2.8.4
 python-multipart==0.0.5
-pyyaml==5.2
+pyyaml==5.3
 requests-toolbelt==0.9.1
 requests==2.22.0
 responder==2.0.5
 rfc3986==1.3.2
 rx==1.6.1
-six==1.13.0
+six==1.14.0
 starlette==0.12.13
 typesystem==0.2.4
 urllib3==1.25.7
-uvicorn==0.10.8
-uvloop==0.14.0
+uvicorn==0.10.9
+uvloop==0.14.0 ; sys_platform != 'win32' and sys_platform != 'cygwin' and platform_python_implementation != 'pypy'
 websockets==8.1
 whitenoise==5.0.1
