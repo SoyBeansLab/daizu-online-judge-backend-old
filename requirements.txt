@@ -17,7 +17,7 @@ idna==2.8
 itsdangerous==1.1.0
 jinja2==2.10.3
 markupsafe==1.1.1
-marshmallow==3.3.0
+marshmallow==3.5.1
 pika==1.1.0
 promise==2.3
 psycopg2-binary==2.8.3
