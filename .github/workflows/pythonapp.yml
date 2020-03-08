@@ -1,4 +1,4 @@
-name: doj_backend_ci
+name: CI
 
 on: [push]
 
