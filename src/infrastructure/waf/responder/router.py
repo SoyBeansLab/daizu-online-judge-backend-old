@@ -5,6 +5,7 @@ from interface.controllers.contest_controller import ContestController
 from interface.controllers.problem_controller import ProblemController
 from interface.controllers.submittion_controller import SubmittionController
 from interface.controllers.user_controller import UserController
+from interface.controllers.language_controller import LanguageController
 
 
 def set_route(api: responder.API) -> None:
@@ -12,6 +13,7 @@ def set_route(api: responder.API) -> None:
     set_route_problem(api)
     set_route_submittion(api)
     set_route_user(api)
+    set_route_language(api)
 
 
 def set_route_contest(api: responder.API) -> None:
@@ -56,3 +58,8 @@ def set_route_submittion(api: responder.API) -> None:
         "/contests/{contest_id}/submittions/{problem_id}/{submit_id}",
         submittion_controller.submittion,
     )
+
+
+def set_route_language(api: responder.API) -> None:
+    language_controller = LanguageController(SqlHandler("language"))
+    api.add_route("/languages", language_controller.languages)
