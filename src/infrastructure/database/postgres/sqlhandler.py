@@ -1,3 +1,4 @@
+import os
 from typing import List, Union
 
 import psycopg2
@@ -31,10 +32,10 @@ class Cursor(AbsCursor):
 class SqlHandler(AbsSqlHandler):
     def __init__(self, dbname: str):
         # 環境から取るようにする
-        self.host = "database"
+        self.host = os.getenv("DAIZU_DATABASE_HOST", "")
         self.dbname = dbname
-        self.user = "daizu"
-        self.password = "soybeanslab"
+        self.user = os.getenv("DAIZU_DATABASE_USERNAME", "daizu")
+        self.password = os.getenv("DAIZU_DATABASE_PASSWORD", "soybeanslab")
         try:
             self.connection = psycopg2.connect(
                 host=self.host,
