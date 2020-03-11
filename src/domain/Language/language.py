@@ -1,5 +1,7 @@
 class Language:
-    def __init__(self, language, version, base_image, compile_command, execute_command):
+    def __init__(
+        self, language, version, base_image, compile_command, execute_command
+    ):
         self.language = language
         self.version = version
         self.base_image = base_image

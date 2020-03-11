@@ -62,7 +62,4 @@ def set_route_submittion(api: responder.API) -> None:
 
 def set_route_language(api: responder.API) -> None:
     language_controller = LanguageController(SqlHandler("language"))
-    api.add_route(
-        "/languages",
-        language_controller.languages
-    )
+    api.add_route("/languages", language_controller.languages)

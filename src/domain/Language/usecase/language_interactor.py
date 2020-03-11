@@ -6,7 +6,7 @@ from domain.Language.language import Language
 
 class LanguageInteractor:
     def __init__(self, repository: LanguageRepository):
-        self.repository =  repository
+        self.repository = repository
 
     def languages(self) -> List[Language]:
         return self.repository.find_all()
