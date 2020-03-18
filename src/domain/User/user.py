@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 
+from marshmallow import Schema, fields
+import marshmallow_dataclass
+
 
 @dataclass
 class User:
@@ -9,5 +12,5 @@ class User:
 
     username: str
 
-    def as_dict(self):
-        return self.__dict__
+
+UserSchema = marshmallow_dataclass.class_schema(User)
