@@ -7,12 +7,12 @@ from domain.User.user import User
 class UserRepository(ABC):
     @abstractmethod
     def store(self, user: User) -> int:
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def find_all(self) -> List[User]:
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def find(self, username: str) -> List[User]:
-        pass
+        raise NotImplementedError()

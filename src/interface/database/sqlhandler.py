@@ -4,24 +4,24 @@ from abc import ABC, abstractmethod
 class Result(ABC):
     @abstractmethod
     def lastrowsid(self) -> int:
-        pass
+        raise NotImplementedError()
 
 
 class Cursor(ABC):
     @abstractmethod
     def fetch_all(self):
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def fetch_one(self):
-        pass
+        raise NotImplementedError()
 
 
 class SqlHandler(ABC):
     @abstractmethod
     def execute(self, query: str, *args) -> Result:
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def query(self, sql: str, *args) -> Cursor:
-        pass
+        raise NotImplementedError()
