@@ -56,6 +56,6 @@ class SqlHandler(AbsSqlHandler):
 
     def query(self, query: str, *args) -> Cursor:
         with self.connection.cursor() as cursor:
-            cursor.execute(query, args)
+            cursor.execute(query, *args)
             data = cursor.fetchall()
         return Cursor(data)
