@@ -7,7 +7,8 @@ class Contest:
         self,
         contest_id: str,
         contest_name: str,
-        contest_date: datetime.datetime,
+        contest_start_date: datetime.datetime,
+        contest_finish_date: datetime.datetime,
         contest_time: int,
         writer: str,
         contest_description: str,
@@ -15,7 +16,8 @@ class Contest:
     ):
         self.contest_id = contest_id
         self.contest_name = contest_name
-        self.contest_date = contest_date
+        self.contest_start_date = contest_start_date
+        self.contest_finish_date = contest_finish_date
         self.contest_time = contest_time
         self.writer = writer
         self.contest_description = contest_description
@@ -30,5 +32,6 @@ class Contest:
 
     def as_json(self):
         d = self.as_dict()
-        d["contest_date"] = str(d["contest_date"])
+        d["contest_start_date"] = str(d["contest_start_date"])
+        d["contest_finish_date"] = str(d["contest_finish_date"])
         return d
