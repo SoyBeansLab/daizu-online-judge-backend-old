@@ -33,7 +33,7 @@ class SubmittionController:
         submittions = []
         for row in rows:
             submittions.append(row.as_json())
-        resp.media = {"submittions": submittions}
+        resp.media = submittions
         resp.status_code = 200
 
     async def submittion(self, req, resp, *, contest_id, problem_id, submit_id):
@@ -42,5 +42,5 @@ class SubmittionController:
             res_data = None
         else:
             res_data = submittion.as_json()
-        resp.media = {"submittion": res_data}
+        resp.media = res_data
         resp.status_code = 200

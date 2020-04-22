@@ -34,5 +34,5 @@ class ContestController:
         else:
             res_data = contest.as_json()
             res_code = 200
-        resp.media = {"contest": res_data}
+        resp.media = res_data
         resp.status_code = res_code
