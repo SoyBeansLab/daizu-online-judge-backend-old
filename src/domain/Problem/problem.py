@@ -3,6 +3,7 @@ class Problem:
         self,
         contest_id: str,
         problem_id: str,
+        problem_order: str,
         problem_name: str,
         time_limit: int,
         memory_limit: int,
@@ -13,6 +14,7 @@ class Problem:
 
         self.contest_id = contest_id
         self.problem_id = problem_id
+        self.problem_order = problem_order
         self.problem_name = problem_name
         self.time_limit = time_limit
         self.memory_limit = memory_limit
