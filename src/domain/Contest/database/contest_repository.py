@@ -1,4 +1,5 @@
 from typing import List
+from datetime import datetime
 
 from domain.Contest.usecase.contest_repository import (
     ContestRepository as AbsContestRepository,
@@ -13,6 +14,31 @@ class ContestRepository(AbsContestRepository):
 
     def find_all(self) -> List[Contest]:
         rows = self.sqlhandler.query("SELECT * FROM contests").fetch_all()
+        return [Contest(*row) for row in rows]
+
+    def find_upcoming(self) -> List[Contest]:
+        """ 予定されたContestを取得する """
+        rows = self.sqlhandler.query(
+            "SELECT * FROM contests WHERE contest_start_date > %s",
+            (datetime.now(), )
+        ).fetch_all()
+        return [Contest(*row) for row in rows]
+
+    def find_current(self) -> List[Contest]:
+        """ 開催中のContestを取得する """
+        now_date = datetime.now()
+        rows = self.sqlhandler.query(
+            "SELECT * FROM contests WHERE contest_start_date < %s AND contest_finish_date > %s",
+            (now_date, now_date, )
+        ).fetch_all()
+        return [Contest(*row) for row in rows]
+
+    def find_recent(self) -> List[Contest]:
+        """ 終了したContestを取得する """
+        rows = self.sqlhandler.query(
+            "SELECT * FROM contests WHERE contest_finish_date < %s",
+            (datetime.now(), )
+        ).fetch_all()
         return [Contest(*row) for row in rows]
 
     def find(self, contest_id: str) -> Contest:

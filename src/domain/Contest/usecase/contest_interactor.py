@@ -13,3 +13,12 @@ class ContestInteractor:
 
     def contests(self) -> List[Contest]:
         return self.repository.find_all()
+
+    def upcoming_contests(self) -> List[Contest]:
+        return self.repository.find_upcoming()
+
+    def current_contests(self) -> List[Contest]:
+        return self.repository.find_current()
+
+    def recent_contests(self) -> List[Contest]:
+        return self.repository.find_recent()
