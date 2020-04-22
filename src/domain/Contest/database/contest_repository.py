@@ -20,7 +20,7 @@ class ContestRepository(AbsContestRepository):
         """ 予定されたContestを取得する """
         rows = self.sqlhandler.query(
             "SELECT * FROM contests WHERE contest_start_date > %s",
-            (datetime.now(), )
+            (datetime.now(),),
         ).fetch_all()
         return [Contest(*row) for row in rows]
 
@@ -29,7 +29,7 @@ class ContestRepository(AbsContestRepository):
         now_date = datetime.now()
         rows = self.sqlhandler.query(
             "SELECT * FROM contests WHERE contest_start_date < %s AND contest_finish_date > %s",
-            (now_date, now_date, )
+            (now_date, now_date,),
         ).fetch_all()
         return [Contest(*row) for row in rows]
 
@@ -37,7 +37,7 @@ class ContestRepository(AbsContestRepository):
         """ 終了したContestを取得する """
         rows = self.sqlhandler.query(
             "SELECT * FROM contests WHERE contest_finish_date < %s",
-            (datetime.now(), )
+            (datetime.now(),),
         ).fetch_all()
         return [Contest(*row) for row in rows]
 
