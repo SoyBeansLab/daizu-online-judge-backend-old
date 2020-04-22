@@ -8,10 +8,22 @@ class ContestController:
         self.interactor = ContestInteractor(ContestRepository(sqlhandler))
 
     async def contests(self, req, resp):
-        contests = []
-        for contest in self.interactor.contests():
-            contests.append(contest.as_json())
-        resp.media = {"contests": contests}
+        recent_contests = []
+        upcoming_contests = []
+        current_contests = []
+
+        for contest in self.interactor.recent_contests():
+            recent_contests.append(contest.as_json())
+        for contest in self.interactor.upcoming_contests():
+            upcoming_contests.append(contest.as_json())
+        for contest in self.interactor.current_contests():
+            current_contests.append(contest.as_json())
+
+        resp.media = {
+            "upcoming": upcoming_contests,
+            "current": current_contests,
+            "recent": recent_contests,
+        }
         resp.status_code = 200
 
     async def contest(self, req, resp, *, contest_id):

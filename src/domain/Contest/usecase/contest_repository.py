@@ -10,5 +10,17 @@ class ContestRepository(ABC):
         raise NotImplementedError()
 
     @abstractmethod
+    def find_upcoming(self) -> List[Contest]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    def find_current(self) -> List[Contest]:
+        raise NotImplementedError()
+
+    @abstractmethod
+    def find_recent(self) -> List[Contest]:
+        raise NotImplementedError()
+
+    @abstractmethod
     def find(self, contest_id: str) -> Contest:
         raise NotImplementedError()
