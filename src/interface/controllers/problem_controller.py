@@ -11,7 +11,7 @@ class ProblemController:
         problems = []
         for problem in self.interactor.problems(contest_id):
             problems.append(problem.as_dict())
-        resp.media =  problems
+        resp.media = problems
         resp.status_code = 200
 
     async def problem(self, req, resp, *, contest_id, problem_id):
