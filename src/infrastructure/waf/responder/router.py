@@ -19,7 +19,8 @@ def set_route(api: responder.API) -> None:
 
 
 def set_schema(api: responder.API) -> None:
-    api.add_schema("User", UserSchema)
+#    api.add_schema("User", UserSchema)
+    pass
 
 
 def set_route_contest(api: responder.API) -> None:
