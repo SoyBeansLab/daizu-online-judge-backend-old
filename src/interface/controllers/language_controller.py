@@ -11,5 +11,7 @@ class LanguageController:
         languages = []
         for lang in self.interactor.languages():
             languages.append(lang.language)
-        resp.media = languages
+        resp.media = {
+            "data": languages
+        }
         resp.status_code = 200

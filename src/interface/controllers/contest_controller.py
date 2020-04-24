@@ -20,9 +20,11 @@ class ContestController:
             current_contests.append(contest.as_json())
 
         resp.media = {
-            "upcoming": upcoming_contests,
-            "current": current_contests,
-            "recent": recent_contests,
+            "data": {
+                "upcoming": upcoming_contests,
+                "current": current_contests,
+                "recent": recent_contests,
+            }
         }
         resp.status_code = 200
 
@@ -34,5 +36,7 @@ class ContestController:
         else:
             res_data = contest.as_json()
             res_code = 200
-        resp.media = res_data
+        resp.media = {
+            "data": res_data
+        }
         resp.status_code = res_code
