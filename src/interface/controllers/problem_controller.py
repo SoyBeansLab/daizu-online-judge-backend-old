@@ -10,7 +10,7 @@ class ProblemController:
     async def problems(self, req, resp, *, contest_id):
         problems = []
         for problem in self.interactor.problems(contest_id):
-            problems.append(problem.as_dict())
+            problems.append(problem.as_json())
         resp.media = {"problems": problems}
         resp.status_code = 200
 
@@ -20,7 +20,7 @@ class ProblemController:
             res_data = None
             res_code = 400
         else:
-            res_data = problem.as_dict()
+            res_data = problem.as_json()
             res_code = 200
         resp.media = {"problem": res_data}
         resp.status_code = res_code
