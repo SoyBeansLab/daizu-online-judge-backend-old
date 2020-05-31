@@ -8,6 +8,7 @@ from interface.controllers.problem_controller import ProblemController
 from interface.controllers.submittion_controller import SubmittionController
 from interface.controllers.user_controller import UserController
 from interface.controllers.language_controller import LanguageController
+from interface.controllers.registration_controller import RegistrationController
 
 
 def set_route(api: responder.API) -> None:
@@ -16,6 +17,7 @@ def set_route(api: responder.API) -> None:
     set_route_submittion(api)
     set_route_user(api)
     set_route_language(api)
+    set_router_registration(api)
 
 
 def set_schema(api: responder.API) -> None:
@@ -70,3 +72,8 @@ def set_route_submittion(api: responder.API) -> None:
 def set_route_language(api: responder.API) -> None:
     language_controller = LanguageController(SqlHandler())
     api.add_route("/languages", language_controller.languages)
+
+
+def set_router_registration(api: responder.API) -> None:
+    registration_controller = RegistrationController(SqlHandler())
+    api.add_route("/registration", registration_controller.registrations)
