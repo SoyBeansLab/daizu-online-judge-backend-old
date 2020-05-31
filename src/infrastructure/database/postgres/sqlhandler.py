@@ -30,10 +30,10 @@ class Cursor(AbsCursor):
 
 
 class SqlHandler(AbsSqlHandler):
-    def __init__(self, dbname: str):
+    def __init__(self):
         # 環境から取るようにする
         self.host = os.getenv("DAIZU_DATABASE_HOST", "")
-        self.dbname = dbname
+        self.dbname = os.getenv("DAIZU_DATABASE_NAME", "doj")
         self.user = os.getenv("DAIZU_DATABASE_USERNAME", "daizu")
         self.password = os.getenv("DAIZU_DATABASE_PASSWORD", "soybeanslab")
         try:
