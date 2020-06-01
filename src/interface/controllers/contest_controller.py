@@ -1,13 +1,15 @@
 from domain.Contest.database.contest_repository import ContestRepository
 from domain.Contest.usecase.contest_interactor import ContestInteractor
-from infrastructure.database.postgres.sqlhandler import SqlHandler
+
+from interface.database.sqlhandler import SqlHandler
 
 
 class ContestController:
-    def __init__(self, sqlhandler: SqlHandler):
+    def __init__(self, sqlhandler: SqlHandler, fastapi):
         self.interactor = ContestInteractor(ContestRepository(sqlhandler))
+        self.HTTPException = fastapi.HTTPException
 
-    async def contests(self, req, resp):
+    async def contests(self):
         recent_contests = []
         upcoming_contests = []
         current_contests = []
@@ -19,20 +21,20 @@ class ContestController:
         for contest in self.interactor.current_contests():
             current_contests.append(contest.as_json())
 
-        resp.media = {
+        resp = {
             "upcoming": upcoming_contests,
             "current": current_contests,
             "recent": recent_contests,
         }
-        resp.status_code = 200
+        return resp
 
-    async def contest(self, req, resp, *, contest_id):
+    async def contest(self, contest_id: str):
         contest = self.interactor.contest(contest_id)
         if contest is None:
-            res_data = None
-            res_code = 400
-        else:
-            res_data = contest.as_json()
-            res_code = 200
-        resp.media = {"contest": res_data}
-        resp.status_code = res_code
+            raise self.HTTPException(
+                status_code=404, detail="contest not found"
+            )
+
+        res_data = contest.as_json()
+        resp = {"contest": res_data}
+        return resp

@@ -4,23 +4,24 @@ from infrastructure.database.postgres.sqlhandler import SqlHandler
 
 
 class ProblemController:
-    def __init__(self, sqlhandler: SqlHandler):
+    def __init__(self, sqlhandler: SqlHandler, fastapi):
         self.interactor = ProblemInteracor(ProblemRepository(sqlhandler))
+        self.HTTPException = fastapi.HTTPException
 
-    async def problems(self, req, resp, *, contest_id):
+    async def problems(self, contest_id: str):
         problems = []
         for problem in self.interactor.problems(contest_id):
             problems.append(problem.as_json())
-        resp.media = {"problems": problems}
-        resp.status_code = 200
+        resp = {"problems": problems}
+        return resp
 
-    async def problem(self, req, resp, *, contest_id, problem_id):
+    async def problem(self, contest_id: str, problem_id: str):
         problem = self.interactor.problem(problem_id)
         if problem is None:
-            res_data = None
-            res_code = 400
-        else:
-            res_data = problem.as_json()
-            res_code = 200
-        resp.media = {"problem": res_data}
-        resp.status_code = res_code
+            raise self.HTTPException(
+                status_code=404, detail="problem not found"
+            )
+
+        res_data = problem.as_json()
+        resp = {"problem": res_data}
+        return resp

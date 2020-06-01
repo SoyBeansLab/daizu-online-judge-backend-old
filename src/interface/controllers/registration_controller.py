@@ -13,14 +13,14 @@ class RegistrationController:
             RegistrationRepository(sqlhandler)
         )
 
-    async def registrations(self, req, resp):
+    async def registrations(self):
         registrations = []
 
         for registration in self.interactor.registrations():
             registrations.append(registration.as_json())
 
-        resp.media = registrations
-        resp.status_code = 200
+        resp = registrations
+        return resp
 
-    async def registration(self, req, res):
+    async def registration(self):
         pass
