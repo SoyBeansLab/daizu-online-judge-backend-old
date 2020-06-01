@@ -8,6 +8,7 @@ from interface.controllers.problem_controller import ProblemController
 from interface.controllers.submittion_controller import SubmittionController
 from interface.controllers.user_controller import UserController
 from interface.controllers.language_controller import LanguageController
+from interface.controllers.registration_controller import RegistrationController
 
 
 def set_route(api: responder.API) -> None:
@@ -16,6 +17,7 @@ def set_route(api: responder.API) -> None:
     set_route_submittion(api)
     set_route_user(api)
     set_route_language(api)
+    set_router_registration(api)
 
 
 def set_schema(api: responder.API) -> None:
@@ -24,14 +26,14 @@ def set_schema(api: responder.API) -> None:
 
 
 def set_route_contest(api: responder.API) -> None:
-    contest_controller = ContestController(SqlHandler("contest"))
+    contest_controller = ContestController(SqlHandler())
 
     api.add_route("/contests", contest_controller.contests)
     api.add_route("/contests/{contest_id}", contest_controller.contest)
 
 
 def set_route_problem(api: responder.API) -> None:
-    problem_controller = ProblemController(SqlHandler("problem"))
+    problem_controller = ProblemController(SqlHandler())
 
     api.add_route(
         "/contests/{contest_id}/problems", problem_controller.problems
@@ -43,14 +45,14 @@ def set_route_problem(api: responder.API) -> None:
 
 
 def set_route_user(api: responder.API) -> None:
-    user_controller = UserController(SqlHandler("doj_user"))
+    user_controller = UserController(SqlHandler())
 
     api.add_route("/users/create", user_controller.create)
     api.add_route("/users", user_controller.users)
 
 
 def set_route_submittion(api: responder.API) -> None:
-    submittion_controller = SubmittionController(SqlHandler("submittion"))
+    submittion_controller = SubmittionController(SqlHandler())
 
     api.add_route(
         "/contests/{contest_id}/problems/{problem_id}/submit",
@@ -68,5 +70,10 @@ def set_route_submittion(api: responder.API) -> None:
 
 
 def set_route_language(api: responder.API) -> None:
-    language_controller = LanguageController(SqlHandler("language"))
+    language_controller = LanguageController(SqlHandler())
     api.add_route("/languages", language_controller.languages)
+
+
+def set_router_registration(api: responder.API) -> None:
+    registration_controller = RegistrationController(SqlHandler())
+    api.add_route("/registration", registration_controller.registrations)

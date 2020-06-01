@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import secrets
 
 
@@ -6,7 +6,6 @@ class Submittion:
     def __init__(
         self,
         submit_id: str = None,
-        submit_date: datetime.datetime = None,
         username: str = None,
         problem_id: str = None,
         result: str = None,
@@ -16,15 +15,13 @@ class Submittion:
         source_code: str = None,
         code_size: int = None,
         compile_message: str = None,
+        created_at: datetime = None,
     ):
         if submit_id is not None:
             self.submit_id = submit_id
         else:
             self.submit_id = self.__generate_id()
-        if submit_date is not None:
-            self.submit_date = submit_date
-        else:
-            self.submit_date = datetime.datetime.now()
+
         self.username = username
         self.problem_id = problem_id
         self.result = result
@@ -34,6 +31,7 @@ class Submittion:
         self.source_code = source_code
         self.code_size = code_size
         self.compile_message = compile_message
+        self.created_at = created_at
 
     def __generate_id(self):
         return secrets.token_hex(4)
