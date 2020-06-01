@@ -1,11 +1,17 @@
-from domain.Registration.database.registration_repository import RegistrationRepository
-from domain.Registration.usecase.registration_interactor import RegistrationInteractor
+from domain.Registration.database.registration_repository import (
+    RegistrationRepository,
+)
+from domain.Registration.usecase.registration_interactor import (
+    RegistrationInteractor,
+)
 from infrastructure.database.postgres.sqlhandler import SqlHandler
 
 
 class RegistrationController:
     def __init__(self, sqlhandler: SqlHandler):
-        self.interactor = RegistrationInteractor(RegistrationRepository(sqlhandler))
+        self.interactor = RegistrationInteractor(
+            RegistrationRepository(sqlhandler)
+        )
 
     async def registrations(self, req, resp):
         registrations = []

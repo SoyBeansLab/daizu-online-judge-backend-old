@@ -1,6 +1,8 @@
 from typing import List
 
-from domain.Registration.usecase.registration_repository import RegistrationRepository
+from domain.Registration.usecase.registration_repository import (
+    RegistrationRepository,
+)
 from domain.Registration.registration import Registration
 
 

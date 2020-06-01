@@ -18,7 +18,9 @@ class RegistrationRepository(AbsRegistrationRepository):
         return [Registration(*row) for row in rows]
 
     def find(self, contest_id: str, username: str):
-        query = "SELECT * FROM registration WHERE contest_id = %s AND username = %s"
+        query = (
+            "SELECT * FROM registration WHERE contest_id = %s AND username = %s"
+        )
         row = self.sqlhandler.query(query).fetch_one()
 
         if not row:
