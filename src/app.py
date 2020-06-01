@@ -1,19 +1,21 @@
-import responder
+from fastapi import FastAPI
+import uvicorn
 
-from infrastructure.waf.responder.router import set_route, set_schema
+from infrastructure.waf.fastapi.router import set_route
 
 
 def main():
-    description: str = "daizu online judge developping is contest site of the competitive programming"
-    api = responder.API(
-        title="daizu online judge",
-        version="0.1.0",
-        openapi="3.0.2",
+    title = "Daizu Online Judge API"
+    description = "daizu online judge developping is contest site of the competitive programming"
+    version = "0.1.0"
+
+    api = FastAPI(
+        title=title,
+        version=version,
         description=description,
     )
     set_route(api)
-    set_schema(api)
-    api.run(address="0.0.0.0", port=5042)
+    uvicorn.run(app=api)
 
 
 if __name__ == "__main__":
