@@ -7,9 +7,10 @@ class LanguageController:
     def __init__(self, sqlhandler: SqlHandler):
         self.interactor = LanguageInteractor(LanguageRepository(sqlhandler))
 
-    async def languages(self, req, resp):
+    async def languages(self):
         languages = []
         for lang in self.interactor.languages():
             languages.append(lang.language)
-        resp.media = {"languages": languages}
-        resp.status_code = 200
+        resp = {"languages": languages}
+
+        return resp

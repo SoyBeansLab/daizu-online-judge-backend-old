@@ -3,3 +3,5 @@ Pipfile.lock
 .env
 __pycache__/
 *.pyc
+
+.vim/

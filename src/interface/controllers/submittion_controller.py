@@ -7,10 +7,11 @@ from infrastructure.database.postgres.sqlhandler import SqlHandler
 
 
 class SubmittionController:
-    def __init__(self, sqlhandler: SqlHandler):
+    def __init__(self, sqlhandler: SqlHandler, fastapi):
         self.interactor = SubmittionInteractor(SubmittionRepository(sqlhandler))
+        self.HTTPException = fastapi.HTTPException
 
-    async def submit(self, req, resp, *, contest_id, problem_id):
+    async def submit(self, contest_id: str, problem_id: str):
         data = await req.media("json")
         try:
             submittion = Submittion(
@@ -23,12 +24,11 @@ class SubmittionController:
             resp.media = submittion.as_json()
             resp.media = submittion.as_json()
             self.interactor.submit(submittion)
-            resp.status_code = 201
+            return "Created"
         except KeyError:
-            resp.media = data
-            resp.status_code = 400
+            raise HTTPException(status_code=400, detail="Key Error")
 
-    async def submittions(self, req, resp, *, contest_id, problem_id):
+    async def submittions(self, contest_id: str, problem_id: str):
         rows = self.interactor.fetch_submittions(problem_id)
         submittions = []
         for row in rows:
@@ -36,7 +36,9 @@ class SubmittionController:
         resp.media = {"submittions": submittions}
         resp.status_code = 200
 
-    async def submittion(self, req, resp, *, contest_id, problem_id, submit_id):
+    async def submittion(
+        self, contest_id: str, problem_id: str, submit_id: str
+    ):
         submittion = self.interactor.fetch_submittion(submit_id)
         if submittion is None:
             res_data = None
