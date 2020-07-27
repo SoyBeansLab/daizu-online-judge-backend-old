@@ -5,7 +5,7 @@ from starlette.requests import Request
 from infrastructure.database.postgres.sqlhandler import SqlHandler
 from interface.controllers.contest_controller import ContestController
 from interface.controllers.problem_controller import ProblemController
-from interface.controllers.submittion_controller import SubmittionController
+from interface.controllers.submission_controller import SubmissionController
 from interface.controllers.user_controller import UserController
 from interface.controllers.language_controller import LanguageController
 from interface.controllers.registration_controller import RegistrationController
@@ -14,7 +14,7 @@ from interface.controllers.registration_controller import RegistrationController
 def set_route(api: FastAPI) -> None:
     set_route_contest(api)
     set_route_problem(api)
-    set_route_submittion(api)
+    set_route_submission(api)
     #    set_route_user(api)
     set_route_language(api)
     set_router_registration(api)
@@ -58,25 +58,25 @@ def set_route_user(api: FastAPI) -> None:
     api.add_api_route("/users", user_controller.users)
 
 
-def set_route_submittion(api: FastAPI) -> None:
-    submittion_controller = SubmittionController(SqlHandler(), fastapi)
+def set_route_submission(api: FastAPI) -> None:
+    submission_controller = SubmissionController(SqlHandler(), fastapi)
 
     api.add_api_route(
         "/contests/{contest_id}/problems/{problem_id}/submit",
-        submittion_controller.submit,
+        submission_controller.submit,
         methods=["POST"],
         status_code=201,
     )
     # contest_idで紐づいたそのコンテストの提出リストとかほしい
     api.add_api_route(
-        "/contests/{contest_id}/submittions/{problem_id}",
-        submittion_controller.submittions,
+        "/contests/{contest_id}/submissions/{problem_id}",
+        submission_controller.submissions,
         methods=["GET"],
         status_code=200,
     )
     api.add_api_route(
-        "/contests/{contest_id}/submittions/{problem_id}/{submit_id}",
-        submittion_controller.submittion,
+        "/contests/{contest_id}/submissions/{problem_id}/{submit_id}",
+        submission_controller.submission,
         methods=["GET"],
         status_code=200,
     )
