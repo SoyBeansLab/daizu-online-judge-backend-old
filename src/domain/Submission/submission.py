@@ -4,7 +4,7 @@ import uuid
 from pydantic import BaseModel, ValidationError, validator
 
 
-class Submittion(BaseModel):
+class Submission(BaseModel):
     submit_id: str
     username: str
     problem_id: str
