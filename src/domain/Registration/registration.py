@@ -12,9 +12,7 @@ class Registration(BaseModel):
         self, contest_id: str, username: str, created_at: Optional[datetime],
     ):
         super().__init__(
-            contest_id = contest_id,
-            username = username,
-            created_at = created_at,
+            contest_id=contest_id, username=username, created_at=created_at,
         )
 
     def as_dict(self):

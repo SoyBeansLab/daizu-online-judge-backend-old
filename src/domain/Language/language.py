@@ -23,11 +23,11 @@ class Language(BaseModel):
         updated_at: Optional[datetime],
     ):
         super().__init__(
-            language = language,
-            version = version,
-            base_image = base_image,
-            compile_command = compile_command,
-            execute_command = execute_command,
-            created_at = created_at,
-            updated_at = updated_at,
+            language=language,
+            version=version,
+            base_image=base_image,
+            compile_command=compile_command,
+            execute_command=execute_command,
+            created_at=created_at,
+            updated_at=updated_at,
         )

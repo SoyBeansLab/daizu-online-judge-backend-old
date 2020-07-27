@@ -29,15 +29,15 @@ class Problem(BaseModel):
         updated_at: Optional[datetime],
     ):
         super().__init__(
-            contest_id = contest_id,
-            problem_id = problem_id,
-            problem_name = problem_name,
-            time_limit = time_limit,
-            memory_limit = memory_limit,
-            score = score,
-            problem_detail = problem_detail,
-            created_at = created_at,
-            updated_at = updated_at,
+            contest_id=contest_id,
+            problem_id=problem_id,
+            problem_name=problem_name,
+            time_limit=time_limit,
+            memory_limit=memory_limit,
+            score=score,
+            problem_detail=problem_detail,
+            created_at=created_at,
+            updated_at=updated_at,
         )
 
     def as_dict(self):

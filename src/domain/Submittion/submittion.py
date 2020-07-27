@@ -32,17 +32,19 @@ class Submittion(BaseModel):
         created_at: Optional[datetime],
     ):
         super().__init__(
-            submit_id = submit_id if submit_id is not None else self.__generate_id(),
-            username = username,
-            problem_id = problem_id,
-            result = result,
-            language = language,
-            score = score,
-            test_case = test_case,
-            source_code = source_code,
-            code_size = code_size,
-            compile_message = compile_message,
-            created_at = created_at,
+            submit_id=submit_id
+            if submit_id is not None
+            else self.__generate_id(),
+            username=username,
+            problem_id=problem_id,
+            result=result,
+            language=language,
+            score=score,
+            test_case=test_case,
+            source_code=source_code,
+            code_size=code_size,
+            compile_message=compile_message,
+            created_at=created_at,
         )
 
     def __generate_id(self):
