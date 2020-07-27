@@ -32,17 +32,17 @@ class Contest(BaseModel):
         updated_at: Optional[datetime],
     ):
         super().__init__(
-            contest_id = contest_id,
-            contest_name = contest_name,
-            contest_start_date = contest_start_date,
-            contest_finish_date = contest_finish_date,
-            contest_time = contest_time,
-            writer = writer,
-            description = description,
-            top_content = top_content,
-            problem_number = problem_number,
-            created_at = created_at,
-            updated_at = updated_at,
+            contest_id=contest_id,
+            contest_name=contest_name,
+            contest_start_date=contest_start_date,
+            contest_finish_date=contest_finish_date,
+            contest_time=contest_time,
+            writer=writer,
+            description=description,
+            top_content=top_content,
+            problem_number=problem_number,
+            created_at=created_at,
+            updated_at=updated_at,
         )
 
     @staticmethod
