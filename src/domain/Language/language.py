@@ -1,7 +1,17 @@
 from datetime import datetime
+from typing import Optional
+from pydantic import BaseModel, ValidationError, validator
 
 
-class Language:
+class Language(BaseModel):
+    language: str
+    version: str
+    base_image: str
+    compile_command: str
+    execute_command: str
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]
+
     def __init__(
         self,
         language: str,
@@ -9,13 +19,15 @@ class Language:
         base_image: str,
         compile_command: str,
         execute_command: str,
-        created_at: datetime,
-        updated_at: datetime,
+        created_at: Optional[datetime],
+        updated_at: Optional[datetime],
     ):
-        self.language = language
-        self.version = version
-        self.base_image = base_image
-        self.compile_command = compile_command
-        self.execute_command = execute_command
-        self.created_at = created_at
-        self.updated_at = updated_at
+        super().__init__(
+            language = language,
+            version = version,
+            base_image = base_image,
+            compile_command = compile_command,
+            execute_command = execute_command,
+            created_at = created_at,
+            updated_at = updated_at,
+        )

@@ -1,33 +1,49 @@
-import datetime
+from datetime import datetime
 import secrets
+from typing import Optional
+from pydantic import BaseModel, ValidationError, validator
 
 
-class Contest:
+class Contest(BaseModel):
+    contest_id: str
+    contest_name: str
+    contest_start_date: Optional[datetime]
+    contest_finish_date: Optional[datetime]
+    contest_time: int = None
+    writer: str
+    description: str = None
+    top_content: str
+    problem_number: int
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]
+
     def __init__(
         self,
         contest_id: str,
         contest_name: str,
-        contest_start_date: datetime.datetime,
-        contest_finish_date: datetime.datetime,
+        contest_start_date: Optional[datetime],
+        contest_finish_date: Optional[datetime],
         contest_time: int,
         writer: str,
         description: str,
         top_content: str,
         problem_number: int,
-        created_at: datetime.datetime,
-        updated_at: datetime.datetime,
+        created_at: Optional[datetime],
+        updated_at: Optional[datetime],
     ):
-        self.contest_id = contest_id
-        self.contest_name = contest_name
-        self.contest_start_date = contest_start_date
-        self.contest_finish_date = contest_finish_date
-        self.contest_time = contest_time
-        self.writer = writer
-        self.description = description
-        self.top_content = top_content
-        self.problem_number = problem_number
-        self.created_at = created_at
-        self.updated_at = updated_at
+        super().__init__(
+            contest_id = contest_id,
+            contest_name = contest_name,
+            contest_start_date = contest_start_date,
+            contest_finish_date = contest_finish_date,
+            contest_time = contest_time,
+            writer = writer,
+            description = description,
+            top_content = top_content,
+            problem_number = problem_number,
+            created_at = created_at,
+            updated_at = updated_at,
+        )
 
     @staticmethod
     def __generate_id(self):

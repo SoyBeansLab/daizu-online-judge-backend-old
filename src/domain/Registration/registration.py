@@ -1,13 +1,21 @@
 from datetime import datetime
+from typing import Optional
+from pydantic import BaseModel, ValidationError, validator
 
 
-class Registration:
+class Registration(BaseModel):
+    contest_id: str
+    username: str
+    created_at: Optional[datetime]
+
     def __init__(
-        self, contest_id: str, username: str, created_at: datetime,
+        self, contest_id: str, username: str, created_at: Optional[datetime],
     ):
-        self.contest_id = contest_id
-        self.username = username
-        self.created_at = created_at
+        super().__init__(
+            contest_id = contest_id,
+            username = username,
+            created_at = created_at,
+        )
 
     def as_dict(self):
         return self.__dict__
