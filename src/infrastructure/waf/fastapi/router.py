@@ -9,6 +9,7 @@ from interface.controllers.submission_controller import SubmissionController
 from interface.controllers.user_controller import UserController
 from interface.controllers.language_controller import LanguageController
 from interface.controllers.registration_controller import RegistrationController
+from interface.controllers.notification_controller import NotificationController
 
 
 def set_route(api: FastAPI) -> None:
@@ -18,6 +19,7 @@ def set_route(api: FastAPI) -> None:
     #    set_route_user(api)
     set_route_language(api)
     set_router_registration(api)
+    set_route_notification(api)
 
 
 def set_route_contest(api: FastAPI) -> None:
@@ -100,4 +102,11 @@ def set_router_registration(api: FastAPI) -> None:
     )
     api.add_api_route(
         "/registration", registration_controller.registration, methods=["POST"]
+    )
+
+def set_route_notification(api: FastAPI) -> None:
+    notification_controller = NotificationController(SqlHandler())
+
+    api.add_api_route(
+        "/notifications", notification_controller.notifications, methods=["GET"]
     )
