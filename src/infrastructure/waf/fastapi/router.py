@@ -104,6 +104,7 @@ def set_router_registration(api: FastAPI) -> None:
         "/registration", registration_controller.registration, methods=["POST"]
     )
 
+
 def set_route_notification(api: FastAPI) -> None:
     notification_controller = NotificationController(SqlHandler())
 

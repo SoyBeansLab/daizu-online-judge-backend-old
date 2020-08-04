@@ -1,6 +1,8 @@
 from typing import List
 
-from domain.Notification.usecase.notification_repository import NotificationRepository
+from domain.Notification.usecase.notification_repository import (
+    NotificationRepository,
+)
 from domain.Notification.notification import Notification
 
 

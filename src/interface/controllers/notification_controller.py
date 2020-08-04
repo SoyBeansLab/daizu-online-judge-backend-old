@@ -1,11 +1,17 @@
-from domain.Notification.database.notification_repository import NotificationRepository
-from domain.Notification.usecase.notification_interactor import NotificationInteractor
+from domain.Notification.database.notification_repository import (
+    NotificationRepository,
+)
+from domain.Notification.usecase.notification_interactor import (
+    NotificationInteractor,
+)
 from infrastructure.database.postgres.sqlhandler import SqlHandler
 
 
 class NotificationController:
     def __init__(self, sqlhandler: SqlHandler):
-        self.interactor = NotificationInteractor(NotificationRepository(sqlhandler))
+        self.interactor = NotificationInteractor(
+            NotificationRepository(sqlhandler)
+        )
 
     async def notifications(self):
         notifications = []
