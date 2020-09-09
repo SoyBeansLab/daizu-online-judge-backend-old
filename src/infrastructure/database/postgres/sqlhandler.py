@@ -50,7 +50,7 @@ class SqlHandler(AbsSqlHandler):
     def execute(self, query: str, *args) -> Result:
         with self.connection.cursor() as cursor:
             cursor.execute(query, args)
-            lastrowid = cursor.lastrowid()
+            lastrowid = cursor.lastrowid
         self.connection.commit()
         return lastrowid
 

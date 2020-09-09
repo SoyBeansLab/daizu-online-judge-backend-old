@@ -10,3 +10,6 @@ class LanguageInteractor:
 
     def languages(self) -> List[Language]:
         return self.repository.find_all()
+
+    def store(self, language: Language) -> None:
+        return self.repository.store(language)
