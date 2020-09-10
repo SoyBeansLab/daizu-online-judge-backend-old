@@ -19,8 +19,8 @@ class Language(BaseModel):
         base_image: str,
         compile_command: str,
         execute_command: str,
-        created_at: Optional[datetime],
-        updated_at: Optional[datetime],
+        created_at: Optional[datetime] = None,
+        updated_at: Optional[datetime] = None,
     ):
         super().__init__(
             language=language,
@@ -28,6 +28,4 @@ class Language(BaseModel):
             base_image=base_image,
             compile_command=compile_command,
             execute_command=execute_command,
-            created_at=created_at,
-            updated_at=updated_at,
         )
