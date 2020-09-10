@@ -30,9 +30,13 @@ def set_route_contest(api: FastAPI) -> None:
         contest_controller.contests,
         methods=["GET"],
         status_code=200,
+        tags=["contests"],
     )
     api.add_api_route(
-        "/contests/{contest_id}", contest_controller.contest, methods=["GET"]
+        "/contests/{contest_id}",
+        contest_controller.contest,
+        methods=["GET"],
+        tags=["contests"],
     )
 
 
@@ -44,12 +48,14 @@ def set_route_problem(api: FastAPI) -> None:
         problem_controller.problems,
         methods=["GET"],
         status_code=200,
+        tags=["problems"],
     )
     api.add_api_route(
         "/contests/{contest_id}/problems/{problem_id}",
         problem_controller.problem,
         methods=["GET"],
         status_code=200,
+        tags=["problems"],
     )
 
 
@@ -68,6 +74,7 @@ def set_route_submission(api: FastAPI) -> None:
         submission_controller.submit,
         methods=["POST"],
         status_code=201,
+        tags=["submissions"],
     )
     # contest_idで紐づいたそのコンテストの提出リストとかほしい
     api.add_api_route(
@@ -75,12 +82,14 @@ def set_route_submission(api: FastAPI) -> None:
         submission_controller.submissions,
         methods=["GET"],
         status_code=200,
+        tags=["submissions"],
     )
     api.add_api_route(
         "/contests/{contest_id}/submissions/{problem_id}/{submit_id}",
         submission_controller.submission,
         methods=["GET"],
         status_code=200,
+        tags=["submissions"],
     )
 
 
@@ -91,24 +100,28 @@ def set_route_language(api: FastAPI) -> None:
         language_controller.languages,
         methods=["GET"],
         status_code=200,
+        tags=["languages"],
     )
     api.add_api_route(
         "/languages",
         language_controller.create_language,
         methods=["POST"],
         status_code=201,
+        tags=["languages"],
     )
     api.add_api_route(
         "/languages",
         language_controller.update,
         methods=["PUT"],
         status_code=200,
+        tags=["languages"],
     )
     api.add_api_route(
         "/languages",
         language_controller.delete,
         methods=["DELETE"],
         status_code=200,
+        tags=["languages"],
     )
 
 
@@ -116,10 +129,16 @@ def set_router_registration(api: FastAPI) -> None:
     registration_controller = RegistrationController(SqlHandler())
 
     api.add_api_route(
-        "/registration", registration_controller.registrations, methods=["GET"]
+        "/registration",
+        registration_controller.registrations,
+        methods=["GET"],
+        tags=["registrations"],
     )
     api.add_api_route(
-        "/registration", registration_controller.registration, methods=["POST"]
+        "/registration",
+        registration_controller.registration,
+        methods=["POST"],
+        tags=["registrations"],
     )
 
 
@@ -127,5 +146,8 @@ def set_route_notification(api: FastAPI) -> None:
     notification_controller = NotificationController(SqlHandler())
 
     api.add_api_route(
-        "/notifications", notification_controller.notifications, methods=["GET"]
+        "/notifications",
+        notification_controller.notifications,
+        methods=["GET"],
+        tags=["notifications"],
     )

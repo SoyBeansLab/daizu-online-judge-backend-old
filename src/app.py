@@ -25,13 +25,34 @@ if environ.get("DAIZU_LOG_FILE", "") == "1":
     fh.setFormatter(formatter)
     logger.addHandler(fh)
 
+## Configuration Documents
+tags_metadata = [
+    {"name": "contests", "description": "Operations the Contest.",},
+    {"name": "problems", "description": "Operations the Problem.",},
+    {"name": "submissions", "description": "Operations the Submission.",},
+    {
+        "name": "registrations",
+        "description": "Operations the Registrations. Register for the contest or cancel it.",
+    },
+    {
+        "name": "notifications",
+        "description": "Operations the Notifications. Manage notifications to users.",
+    },
+    {"name": "languages", "description": "Operations the Languages.",},
+]
+
 
 def main():
-    title = "Daizu Online Judge API"
+    title = "Daizu Online Judge API v1"
     description = "daizu online judge developping is contest site of the competitive programming"
     version = "0.1.0"
 
-    api = FastAPI(title=title, version=version, description=description,)
+    api = FastAPI(
+        title=title,
+        version=version,
+        description=description,
+        openapi_tags=tags_metadata,
+    )
     set_route(api)
     uvicorn.run(app=api)
 
