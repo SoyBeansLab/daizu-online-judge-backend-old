@@ -11,7 +11,7 @@ class LanguageController:
     async def languages(self):
         languages = []
         for lang in self.interactor.languages():
-            languages.append(lang.language)
+            languages.append(lang)
         resp = {"languages": languages}
 
         return resp

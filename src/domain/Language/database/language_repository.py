@@ -31,5 +31,5 @@ class LanguageRepository(AbsLanguageRespository):
             language.version,
             language.base_image,
             language.compile_command,
-            language.execute_command
+            language.execute_command,
         )
