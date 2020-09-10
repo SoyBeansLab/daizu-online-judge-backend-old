@@ -28,4 +28,6 @@ class Language(BaseModel):
             base_image=base_image,
             compile_command=compile_command,
             execute_command=execute_command,
+            created_at=created_at,
+            updated_at=updated_at,
         )
