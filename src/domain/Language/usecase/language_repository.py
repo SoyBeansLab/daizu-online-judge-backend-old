@@ -8,3 +8,7 @@ class LanguageRepository(ABC):
     @abstractclassmethod
     def find_all(self) -> List[Language]:
         pass
+
+    @abstractclassmethod
+    def store(self, language: Language) -> None:
+        pass
