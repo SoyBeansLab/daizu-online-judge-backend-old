@@ -92,6 +92,12 @@ def set_route_language(api: FastAPI) -> None:
         methods=["GET"],
         status_code=200,
     )
+    api.add_api_route(
+        "/languages",
+        language_controller.create_language,
+        methods=["POST"],
+        status_code=201,
+    )
 
 
 def set_router_registration(api: FastAPI) -> None:
