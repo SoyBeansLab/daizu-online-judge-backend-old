@@ -98,6 +98,18 @@ def set_route_language(api: FastAPI) -> None:
         methods=["POST"],
         status_code=201,
     )
+    api.add_api_route(
+        "/languages",
+        language_controller.update,
+        methods=["PUT"],
+        status_code=200,
+    )
+    api.add_api_route(
+        "/languages",
+        language_controller.delete,
+        methods=["DELETE"],
+        status_code=200,
+    )
 
 
 def set_router_registration(api: FastAPI) -> None:
