@@ -9,7 +9,7 @@ from infrastructure.waf.fastapi.router import set_route
 
 ## Configuration Logger
 logger = getLogger("daizu")
-formatter = Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger.setLevel(DEBUG)
 logger.propagate = False
 
@@ -20,7 +20,7 @@ if environ.get("DAIZU_LOG_STREAM", "") == "1":
     logger.addHandler(handler)
 
 if environ.get("DAIZU_LOG_FILE", "") == "1":
-    fh = FileHandler(filename='daizu_online_judge.log')
+    fh = FileHandler(filename="daizu_online_judge.log")
     fh.setLevel(DEBUG)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
