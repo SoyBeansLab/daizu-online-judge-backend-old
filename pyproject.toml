@@ -10,7 +10,7 @@ python = "^3.7"
 psycopg2-binary = "^2.8.5"
 pika = "^1.1.0"
 marshmallow_dataclass = "^7.5.1"
-fastapi = "^0.55.1"
+fastapi = "^0.61.1"
 uvicorn = "^0.11.5"
 
 [tool.poetry.dev-dependencies]
