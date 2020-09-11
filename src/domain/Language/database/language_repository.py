@@ -33,3 +33,30 @@ class LanguageRepository(AbsLanguageRespository):
             language.compile_command,
             language.execute_command,
         )
+
+    def update(self, language: Language) -> None:
+        return self.sqlhandler.execute(
+            """
+                UPDATE languages SET
+                    language = %s,
+                    version = %s,
+                    base_image = %s,
+                    compile_command = %s,
+                    execute_command = %s
+                WHERE language = %s
+            """,
+            language.language,
+            language.version,
+            language.base_image,
+            language.compile_command,
+            language.execute_command,
+            language.language,
+        )
+
+    def delete(self, language_name: str) -> None:
+        return self.sqlhandler.execute(
+            """
+                DELETE FROM languages WHERE language = %s
+            """,
+            language_name
+        )

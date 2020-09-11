@@ -13,3 +13,9 @@ class LanguageInteractor:
 
     def store(self, language: Language) -> None:
         return self.repository.store(language)
+
+    def update(self, language: Language) -> None:
+        return self.repository.update(language)
+
+    def delete(self, language_name: str) -> None:
+        return self.repository.delete(language_name)
