@@ -27,18 +27,9 @@ if environ.get("DAIZU_LOG_FILE", "") == "1":
 
 ## Configuration Documents
 tags_metadata = [
-    {
-        "name": "contests",
-        "description": "Operations the Contest.",
-    },
-    {
-        "name": "problems",
-        "description": "Operations the Problem.",
-    },
-    {
-        "name": "submissions",
-        "description": "Operations the Submission.",
-    },
+    {"name": "contests", "description": "Operations the Contest.",},
+    {"name": "problems", "description": "Operations the Problem.",},
+    {"name": "submissions", "description": "Operations the Submission.",},
     {
         "name": "registrations",
         "description": "Operations the Registrations. Register for the contest or cancel it.",
@@ -47,10 +38,7 @@ tags_metadata = [
         "name": "notifications",
         "description": "Operations the Notifications. Manage notifications to users.",
     },
-    {
-        "name": "languages",
-        "description": "Operations the Languages.",
-    },
+    {"name": "languages", "description": "Operations the Languages.",},
 ]
 
 
@@ -59,7 +47,12 @@ def main():
     description = "daizu online judge developping is contest site of the competitive programming"
     version = "0.1.0"
 
-    api = FastAPI(title=title, version=version, description=description, openapi_tags=tags_metadata)
+    api = FastAPI(
+        title=title,
+        version=version,
+        description=description,
+        openapi_tags=tags_metadata,
+    )
     set_route(api)
     uvicorn.run(app=api)
 
