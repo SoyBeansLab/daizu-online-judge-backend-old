@@ -22,3 +22,15 @@ class LanguageController:
         resp = {"status": "ok"}
 
         return resp
+
+    async def update(self, language: Language):
+        self.interactor.update(language)
+        resp = {"status": "ok"}
+
+        return resp
+
+    async def delete(self, language_name: str):
+        self.interactor.delete(language_name)
+        resp = {"status": "ok"}
+
+        return resp
