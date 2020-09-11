@@ -58,5 +58,5 @@ class LanguageRepository(AbsLanguageRespository):
             """
                 DELETE FROM languages WHERE language = %s
             """,
-            language_name
+            language_name,
         )
