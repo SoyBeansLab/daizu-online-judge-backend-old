@@ -151,3 +151,21 @@ def set_route_notification(api: FastAPI) -> None:
         methods=["GET"],
         tags=["notifications"],
     )
+    api.add_api_route(
+        "/notifications",
+        notification_controller.create,
+        methods=["POST"],
+        tags=["notifications"],
+    )
+    api.add_api_route(
+        "/notifications",
+        notification_controller.update,
+        methods=["PUT"],
+        tags=["notifications"],
+    )
+    api.add_api_route(
+        "/notifications",
+        notification_controller.delete,
+        methods=["DELETE"],
+        tags=["notifications"],
+    )

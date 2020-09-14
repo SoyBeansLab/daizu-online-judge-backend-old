@@ -13,8 +13,8 @@ class Notification(BaseModel):
         self,
         id: str,
         description: str,
-        created_at: Optional[datetime],
-        updated_at: Optional[datetime],
+        created_at: Optional[datetime] = None,
+        updated_at: Optional[datetime] = None,
     ):
         super().__init__(
             id=id,
