@@ -1,3 +1,4 @@
+from domain.Contest.contest import Contest
 from domain.Contest.database.contest_repository import ContestRepository
 from domain.Contest.usecase.contest_interactor import ContestInteractor
 
@@ -37,4 +38,22 @@ class ContestController:
 
         res_data = contest.as_json()
         resp = {"contest": res_data}
+        return resp
+
+    async def store(self, contest: Contest):
+        self.interactor.store(contest)
+        resp = {}
+
+        return resp
+
+    async def update(self, contest_id: str, contest: Contest):
+        self.interactor.update(contest_id, contest)
+        resp = {}
+
+        return resp
+
+    async def delete(self, contest_id: str):
+        self.interactor.delete(contest_id)
+        resp = {}
+
         return resp

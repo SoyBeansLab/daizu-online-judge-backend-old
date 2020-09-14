@@ -33,9 +33,31 @@ def set_route_contest(api: FastAPI) -> None:
         tags=["contests"],
     )
     api.add_api_route(
+        "/contests",
+        contest_controller.store,
+        status_code=201,
+        methods=["POST"],
+        tags=["contests"],
+    )
+    api.add_api_route(
         "/contests/{contest_id}",
         contest_controller.contest,
+        status_code=200,
         methods=["GET"],
+        tags=["contests"],
+    )
+    api.add_api_route(
+        "/contests/{contest_id}",
+        contest_controller.update,
+        status_code=200,
+        methods=["PUT"],
+        tags=["contests"],
+    )
+    api.add_api_route(
+        "/contests/{contest_id}",
+        contest_controller.delete,
+        status_code=200,
+        methods=["DELETE"],
         tags=["contests"],
     )
 

@@ -48,3 +48,65 @@ class ContestRepository(AbsContestRepository):
         if len(row) == 0:
             return None
         return Contest(*row)
+
+    def store(self, contest: Contest) -> None:
+        return self.sqlhandler.execute(
+            """
+                INSERT INTO contests (
+                    contest_id,
+                    contest_name,
+                    contest_start_date,
+                    contest_finish_date,
+                    contest_time,
+                    writer,
+                    description,
+                    top_content,
+                    problem_number
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """,
+            contest.contest_id,
+            contest.contest_name,
+            contest.contest_start_date,
+            contest.contest_finish_date,
+            contest.contest_time,
+            contest.writer,
+            contest.description,
+            contest.top_content,
+            contest.problem_number,
+        )
+
+    def update(self, contest_id: str, contest: Contest) -> None:
+        return self.sqlhandler.execute(
+            """
+                UPDATE contests SET
+                    contest_id = %s,
+                    contest_name = %s,
+                    contest_start_date = %s,
+                    contest_finish_date = %s,
+                    contest_time = %s,
+                    writer = %s,
+                    description = %s,
+                    top_content = %s,
+                    problem_number = %s
+                WHERE contest_id = %s
+            """,
+            contest_id,
+            contest.contest_name,
+            contest.contest_start_date,
+            contest.contest_finish_date,
+            contest.contest_time,
+            contest.writer,
+            contest.description,
+            contest.top_content,
+            contest.problem_number,
+            contest_id,
+        )
+
+    def delete(self, contest_id: str) -> None:
+        return self.sqlhandler.execute(
+            """
+                DELETE FROM contests WHERE contest_id = %s
+            """,
+            contest_id,
+        )
