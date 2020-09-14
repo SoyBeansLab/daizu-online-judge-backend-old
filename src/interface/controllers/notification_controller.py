@@ -1,3 +1,4 @@
+from domain.Notification.notification import Notification
 from domain.Notification.database.notification_repository import (
     NotificationRepository,
 )
@@ -19,5 +20,21 @@ class NotificationController:
             notifications.append(notification.as_json())
 
         resp = {"notifications": notifications}
+
+        return resp
+
+    async def create(self, notification: Notification):
+        self.interactor.store(notification)
+        resp = {}
+        return resp
+
+    async def update(self, notification: Notification):
+        self.interactor.update(notification)
+        resp = {}
+        return resp
+
+    async def delete(self, id: str):
+        self.interactor.delete(id)
+        resp = {}
 
         return resp
