@@ -96,7 +96,7 @@ class ContestRepository(AbsContestRepository):
             contest.contest_start_date,
             contest.contest_finish_date,
             contest.contest_time,
-            conetst.writer,
+            contest.writer,
             contest.description,
             contest.top_content,
             contest.problem_number,
