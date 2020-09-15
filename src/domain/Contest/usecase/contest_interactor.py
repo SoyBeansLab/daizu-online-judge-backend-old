@@ -26,8 +26,8 @@ class ContestInteractor:
     def store(self, contest: Contest) -> None:
         return self.repository.store(contest)
 
-    def update(self, contest: Contest) -> None:
-        return self.repository.update(contest)
+    def update(self, contest_id: str, contest: Contest) -> None:
+        return self.repository.update(contest_id, contest)
 
     def delete(self, contest_id: str) -> None:
         return self.repository.delete(contest_id)

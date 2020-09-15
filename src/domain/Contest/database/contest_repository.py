@@ -76,7 +76,7 @@ class ContestRepository(AbsContestRepository):
             contest.problem_number,
         )
 
-    def update(self, contest: Contest) -> None:
+    def update(self, contest_id: str, contest: Contest) -> None:
         return self.sqlhandler.execute(
             """
                 UPDATE contests SET
@@ -91,7 +91,7 @@ class ContestRepository(AbsContestRepository):
                     problem_number = %s
                 WHERE contest_id = %s
             """,
-            contest.contest_id,
+            contest_id,
             contest.contest_name,
             contest.contest_start_date,
             contest.contest_finish_date,
@@ -100,7 +100,7 @@ class ContestRepository(AbsContestRepository):
             contest.description,
             contest.top_content,
             contest.problem_number,
-            contest.contest_id,
+            contest_id,
         )
 
     def delete(self, contest_id: str) -> None:

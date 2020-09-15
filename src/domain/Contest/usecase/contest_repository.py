@@ -30,7 +30,7 @@ class ContestRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def update(self, contest: Contest) -> None:
+    def update(self, contest_id: str, contest: Contest) -> None:
         raise NotImplementedError
 
     @abstractmethod
