@@ -24,3 +24,15 @@ class ContestRepository(ABC):
     @abstractmethod
     def find(self, contest_id: str) -> Contest:
         raise NotImplementedError()
+
+    @abstractmethod
+    def store(self, contest: Contest) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def update(self, contest: Contest) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def delete(self, contest_id: str) -> None:
+        raise NotImplementedError
