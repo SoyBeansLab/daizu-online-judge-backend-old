@@ -47,7 +47,7 @@ class ContestController:
         return resp
 
     async def update(self, contest_id: str, contest: Contest):
-        self.interactor.update(contest)
+        self.interactor.update(contest_id, contest)
         resp = {}
 
         return resp
