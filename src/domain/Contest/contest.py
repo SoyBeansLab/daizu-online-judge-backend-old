@@ -28,8 +28,8 @@ class Contest(BaseModel):
         description: str,
         top_content: str,
         problem_number: int,
-        created_at: Optional[datetime],
-        updated_at: Optional[datetime],
+        created_at: Optional[datetime] = None,
+        updated_at: Optional[datetime] = None,
     ):
         super().__init__(
             contest_id=contest_id,
@@ -41,8 +41,6 @@ class Contest(BaseModel):
             description=description,
             top_content=top_content,
             problem_number=problem_number,
-            created_at=created_at,
-            updated_at=updated_at,
         )
 
     @staticmethod
