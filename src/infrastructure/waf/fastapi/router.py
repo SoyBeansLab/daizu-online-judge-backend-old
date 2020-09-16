@@ -166,7 +166,7 @@ def set_router_registration(api: FastAPI) -> None:
         "/registration",
         registration_controller.delete,
         methods=["DELETE"],
-        tags=["registrations"]
+        tags=["registrations"],
     )
 
 
