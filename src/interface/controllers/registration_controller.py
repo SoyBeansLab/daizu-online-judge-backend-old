@@ -24,3 +24,12 @@ class RegistrationController:
 
     async def registration(self):
         pass
+
+    async def delete(self, contest_id: str, username: str) -> None:
+        resp = dict()
+        self.interactor.delete(contest_id, username)
+
+        resp["status"] = "Success"
+        resp["message"] = "Delete registraion"
+
+        return resp
