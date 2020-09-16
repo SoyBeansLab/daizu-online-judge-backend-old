@@ -12,3 +12,7 @@ class RegistrationRepository(ABC):
     @abstractmethod
     def find(self, contest_id: str, username: str) -> Registration:
         raise NotImplementedError()
+
+    @abstractmethod
+    def delete(self, contest_id: str, username: str) -> None:
+        raise NotImplementedError()
