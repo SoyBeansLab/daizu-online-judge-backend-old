@@ -60,7 +60,7 @@ class ContestController:
             self.interactor.store(contest)
             resp["status"] = "Success"
             resp["message"] = "Create contest"
-        except  DuplicateKeyError as e:
+        except DuplicateKeyError as e:
             message = f"Duplicate key (Key: {contest_id})"
             logger.debug(message, e)
             raise DuplicateKeyHTTPException(detail=message)
