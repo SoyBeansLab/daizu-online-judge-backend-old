@@ -15,3 +15,6 @@ class RegistrationInteractor:
 
     def registration(self) -> Registration:
         return self.repository.find()
+
+    def delete(self, contest_id: str, username: str) -> None:
+        return self.repository.delete(contest_id, username)

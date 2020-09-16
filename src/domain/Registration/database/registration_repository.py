@@ -26,3 +26,8 @@ class RegistrationRepository(AbsRegistrationRepository):
         if not row:
             return None
         return Registration(*row)
+
+    def delete(self, contest_id: str, username: str):
+        query = (
+            "DELETE FROM registrations WHERE contest_id = %s AND username = %s"
+        )

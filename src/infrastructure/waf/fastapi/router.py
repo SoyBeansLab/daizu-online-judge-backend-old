@@ -162,6 +162,12 @@ def set_router_registration(api: FastAPI) -> None:
         methods=["POST"],
         tags=["registrations"],
     )
+    api.add_api_route(
+        "/registration",
+        registration_controller.delete,
+        methods=["DELETE"],
+        tags=["registrations"],
+    )
 
 
 def set_route_notification(api: FastAPI) -> None:
