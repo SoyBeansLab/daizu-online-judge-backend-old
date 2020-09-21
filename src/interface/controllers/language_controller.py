@@ -35,7 +35,7 @@ class LanguageController:
         except DuplicateKeyError as e:
             message = f"Duplicate key. (Key: {language_name})"
             logger.debug(message, e)
-            raise DuplicateKeyHTTPException(detail=message)
+            raise DuplicateKeyHTTPException()
 
         return resp
 

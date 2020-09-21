@@ -11,6 +11,8 @@ from interface.controllers.language_controller import LanguageController
 from interface.controllers.registration_controller import RegistrationController
 from interface.controllers.notification_controller import NotificationController
 
+from exceptions.waf import error_response, DuplicateKeyHTTPException
+
 
 def set_route(api: FastAPI) -> None:
     set_route_contest(api)
@@ -38,6 +40,7 @@ def set_route_contest(api: FastAPI) -> None:
         status_code=201,
         methods=["POST"],
         tags=["contests"],
+        responses=error_response([DuplicateKeyHTTPException]),
     )
     api.add_api_route(
         "/contests/{contest_id}",
@@ -130,6 +133,7 @@ def set_route_language(api: FastAPI) -> None:
         methods=["POST"],
         status_code=201,
         tags=["languages"],
+        responses=error_response([DuplicateKeyHTTPException]),
     )
     api.add_api_route(
         "/languages",
@@ -184,6 +188,7 @@ def set_route_notification(api: FastAPI) -> None:
         notification_controller.create,
         methods=["POST"],
         tags=["notifications"],
+        responses=error_response([DuplicateKeyHTTPException]),
     )
     api.add_api_route(
         "/notifications",
