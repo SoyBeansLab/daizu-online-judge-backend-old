@@ -5,6 +5,7 @@ from fastapi import FastAPI
 import uvicorn
 
 from infrastructure.waf.fastapi.router import set_route
+from exceptions.waf import APIError, api_error_handler
 
 
 ## Configuration Logger
@@ -54,6 +55,8 @@ def main():
         openapi_tags=tags_metadata,
     )
     set_route(api)
+    api.add_exception_handler(APIError, api_error_handler)
+
     uvicorn.run(app=api)
 
 
