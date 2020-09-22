@@ -40,6 +40,7 @@ def set_route_contest(api: FastAPI) -> None:
         status_code=201,
         methods=["POST"],
         tags=["contests"],
+        responses=error_response([DuplicateKeyHTTPException]),
     )
     api.add_api_route(
         "/contests/{contest_id}",
