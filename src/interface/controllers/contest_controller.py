@@ -63,7 +63,7 @@ class ContestController:
         except DuplicateKeyError as e:
             message = f"Duplicate key (Key: {contest_id})"
             logger.debug(message, e)
-            raise DuplicateKeyHTTPException(detail=message)
+            raise DuplicateKeyHTTPException()
 
         return resp
 
