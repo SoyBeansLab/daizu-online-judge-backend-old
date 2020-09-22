@@ -15,10 +15,7 @@ class DuplicateKeyHTTPException(APIError):
 
 async def api_error_handler(request, err: APIError):
     return JSONResponse(
-        status_code=err.status_code,
-        content={
-            "detail": err.detail,
-        },
+        status_code=err.status_code, content={"detail": err.detail,},
     )
 
 
@@ -28,14 +25,11 @@ def error_response(error_types: List[Type[APIError]]) -> Dict:
     for et in error_types:
         if not d.get(et.status_code):
             d[et.status_code] = {
-                'description': f'{et.detail}',
-                'content': {
-                    'application/json': {
-                        'example': {
-                            'detail': et.detail
-                        }
-                    }
-                }}
+                "description": f"{et.detail}",
+                "content": {
+                    "application/json": {"example": {"detail": et.detail}}
+                },
+            }
         else:
-            d[et.status_code]['description'] += f'<br>{et.detail}'
+            d[et.status_code]["description"] += f"<br>{et.detail}"
     return d
