@@ -38,14 +38,16 @@ $ poetry run pytest
 ## Environment variables
 Please set the environment variables of the table to .env, etc.
 
-| name                       | default value | 
-| :------------------------- | :------------ | 
-| DAIZU\_DATABASE\_HOST      | localhost     | 
-| DAIZU\_DATABASE\_NAME      | doj           | 
-| DAIZU\_DATABASE\_USERNAME  | daizu         | 
-| DAIZU\_DATABASE\_PASSWOWRD | soybeanslab   | 
-| DAIZU\_LOG\_STREAM         |               | 
-| DAIZU\_LOG\_FILE           |               | 
+| name                        | default value | 
+| :-------------------------- | :------------ | 
+| DAIZU\_DATABASE\_HOST       | localhost     | 
+| DAIZU\_DATABASE\_NAME       | doj           | 
+| DAIZU\_DATABASE\_USERNAME   | daizu         | 
+| DAIZU\_DATABASE\_PASSWOWRD  | soybeanslab   | 
+| DAIZU\_LOG\_STREAM          |               | 
+| DAIZU\_LOG\_FILE            |               | 
+| DAIZU\_AUTH0\_DOMAIN        |               | 
+| DAIZU\_AUTH0\_API\_AUDIENCE |               | 
 
 ## Author
 SoyBeansLab
