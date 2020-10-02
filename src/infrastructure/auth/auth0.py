@@ -69,8 +69,7 @@ def requires_auth(token, AUTH0_DOMAIN: str = ""):
                 token,
                 rsa_key,
                 algorithms=AUTH0_ALGORITHMS,
-                #            audience=AUTH0_AUDIENCE,
-                audience="6hQz2EfoLoWsLGjvf7AMqtohxY8CstO0",
+                audience=AUTH0_AUDIENCE,
                 issuer=f"https://{AUTH0_DOMAIN}/",
             )
         except jwt.ExpiredSignatureError:
