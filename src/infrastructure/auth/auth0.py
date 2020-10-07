@@ -8,31 +8,6 @@ from jose import jwt
 from exceptions.auth import AuthError
 
 
-def get_token_auth_header(headers):
-    """
-    ref: https://auth0.com/docs/quickstart/backend/python#create-the-jwt-validation-decorator
-
-    Obtains the Access Token from the Authorization Header
-    """
-    auth: str = headers.get("Authorization", None)
-
-    if not auth:
-        raise AuthError(detail="Authorization header is expected")
-
-    parts = auth.split()
-
-    if parts[0].lower() != "bearer":
-        raise AuthError(detail="Authorization header must start with Bearer")
-    elif len(parts) == 1:
-        raise AuthError(detail="Token not found")
-    elif len(parts) > 2:
-        raise AuthError(detail="Authorization header must be Bearer token")
-
-    token = parts[1]
-
-    return token
-
-
 def requires_auth(token, AUTH0_DOMAIN: str = ""):
     """
     ref: https://auth0.com/docs/quickstart/backend/python#create-the-jwt-validation-decorator
