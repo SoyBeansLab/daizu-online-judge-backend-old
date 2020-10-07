@@ -93,7 +93,6 @@ def requires_scope(required_scope: str, token: str):
     Determines if the required scope is present in the Access Token
     """
     unverified_claims = jwt.get_unverified_claims(token)
-    print(unverified_claims)
 
     if unverified_claims.get("scope"):
         token_scopes = unverified_claims["scope"].split()
