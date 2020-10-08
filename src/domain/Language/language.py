@@ -32,6 +32,15 @@ class Language(BaseModel):
             updated_at=updated_at,
         )
 
+    @validator("language", "version", "base_image", "execute_command")
+    def check_empty_str(cls, v):
+        """
+            compile_commandはスクリプト言語では必要ないのでemptyを許容する.
+        """
+        if not v:
+            raise ValueError("Cannot be empty")
+        return v
+
     def as_dict(self):
         return self.__dict__
 
