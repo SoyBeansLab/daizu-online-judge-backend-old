@@ -21,6 +21,6 @@ jobs:
     - name: Lint with black
       run: |
         poetry run black . --check -l 80
-        #    - name: Test with pytest
-        #      run: |
-        #        pytest
+    - name: Test with pytest
+      run: |
+        poetry run pytest
