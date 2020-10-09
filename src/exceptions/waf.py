@@ -13,6 +13,11 @@ class DuplicateKeyHTTPException(APIError):
     detail = "Duplicate key"
 
 
+class SqlTransactionException(APIError):
+    status_code = 500
+    detail = "Internal Server Error"
+
+
 async def api_error_handler(request, err: APIError):
     return JSONResponse(
         status_code=err.status_code, content={"detail": err.detail,},
