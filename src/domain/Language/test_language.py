@@ -2,7 +2,7 @@ from datetime import datetime
 import pytest
 from pytest_mock import MockFixture
 
-from language import Language
+from domain.Language.language import Language
 
 
 class TestLanguage:
