@@ -6,6 +6,9 @@ from domain.Language.database.language_repository import LanguageRepository
 from domain.Language.usecase.language_interactor import LanguageInteractor
 from domain.Language.test_helper import create_languages
 
+from exceptions.database import DuplicateKeyError
+from exceptions.waf import DuplicateKeyHTTPException
+
 from interface.controllers.language_controller import LanguageController
 
 
@@ -24,10 +27,12 @@ async def test_find_all(mocker: MockFixture) -> None:
 
 @pytest.mark.asyncio
 async def test_create_language(mocker: MockFixture) -> None:
+    controller = LanguageController(None)
+
+    ## Test to see if you can successfully create a Language from the received data
     mocker.patch(
         "domain.Language.usecase.language_interactor.LanguageInteractor.store"
     ).return_value = None
-    controller = LanguageController(None)
     input_data = Language(
         language="test",
         version="0.1",
@@ -40,6 +45,20 @@ async def test_create_language(mocker: MockFixture) -> None:
         "status": "Success",
     }
     assert await controller.create_language(input_data) == want
+
+    ## Test for DuplicateKeyHTTPException when DuplicationKeyError occurs
+    mocker.patch(
+        "domain.Language.usecase.language_interactor.LanguageInteractor.store"
+    ).side_effect = DuplicateKeyError()
+    input_data = Language(
+        language="test",
+        version="0.1",
+        base_image="test",
+        compile_command="",
+        execute_command="./a.out",
+    )
+    with pytest.raises(DuplicateKeyHTTPException):
+        await controller.create_language(input_data)
 
 
 @pytest.mark.asyncio
