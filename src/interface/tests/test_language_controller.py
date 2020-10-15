@@ -11,7 +11,9 @@ from interface.controllers.language_controller import LanguageController
 
 @pytest.mark.asyncio
 async def test_find_all(mocker: MockFixture) -> None:
-    mocker.patch("domain.Language.usecase.language_interactor.LanguageInteractor.languages").return_value = create_languages(5)
+    mocker.patch(
+        "domain.Language.usecase.language_interactor.LanguageInteractor.languages"
+    ).return_value = create_languages(5)
     controller = LanguageController(None)
     want = {
         "data": create_languages(5),
@@ -22,14 +24,16 @@ async def test_find_all(mocker: MockFixture) -> None:
 
 @pytest.mark.asyncio
 async def test_create_language(mocker: MockFixture) -> None:
-    mocker.patch("domain.Language.usecase.language_interactor.LanguageInteractor.store").return_value = None
+    mocker.patch(
+        "domain.Language.usecase.language_interactor.LanguageInteractor.store"
+    ).return_value = None
     controller = LanguageController(None)
     input_data = Language(
         language="test",
         version="0.1",
         base_image="test",
         compile_command="",
-        execute_command="./a.out"
+        execute_command="./a.out",
     )
     want = {
         "message": "Create language",
@@ -40,14 +44,16 @@ async def test_create_language(mocker: MockFixture) -> None:
 
 @pytest.mark.asyncio
 async def test_update(mocker: MockFixture) -> None:
-    mocker.patch("domain.Language.usecase.language_interactor.LanguageInteractor.update").return_value = None
+    mocker.patch(
+        "domain.Language.usecase.language_interactor.LanguageInteractor.update"
+    ).return_value = None
     controller = LanguageController(None)
     input_data = Language(
         language="test",
         version="0.1",
         base_image="test",
         compile_command="",
-        execute_command="./a.out"
+        execute_command="./a.out",
     )
     want = {
         "message": "Update language",
@@ -58,7 +64,9 @@ async def test_update(mocker: MockFixture) -> None:
 
 @pytest.mark.asyncio
 async def test_delete(mocker: MockFixture) -> None:
-    mocker.patch("domain.Language.usecase.language_interactor.LanguageInteractor.delete").return_value = None
+    mocker.patch(
+        "domain.Language.usecase.language_interactor.LanguageInteractor.delete"
+    ).return_value = None
     controller = LanguageController(None)
     language_name = "test01"
     want = {
