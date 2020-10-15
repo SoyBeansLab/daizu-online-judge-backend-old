@@ -1,3 +1,4 @@
+from logging import getLogger
 import os
 from typing import List, Union
 
@@ -6,6 +7,11 @@ import psycopg2
 from interface.database.sqlhandler import Cursor as AbsCursor
 from interface.database.sqlhandler import Result as AbsResult
 from interface.database.sqlhandler import SqlHandler as AbsSqlHandler
+
+from exceptions.waf import SqlTransactionException
+
+
+logger = getLogger("daizu").getChild("infrastracture.SqlHandler")
 
 
 class Result(AbsResult):
@@ -48,14 +54,26 @@ class SqlHandler(AbsSqlHandler):
         # self.cursor = self.connection.cursor()
 
     def execute(self, query: str, *args) -> Result:
-        with self.connection.cursor() as cursor:
-            cursor.execute(query, args)
-            lastrowid = cursor.lastrowid
-        self.connection.commit()
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(query, args)
+                lastrowid = cursor.lastrowid
+            self.connection.commit()
+        except psycopg2.errors.InFailedSqlTransaction as e:
+            logger.error(e)
+            self.connection.rollback()
+            raise SqlTransactionException()
+
         return lastrowid
 
     def query(self, query: str, *args) -> Cursor:
-        with self.connection.cursor() as cursor:
-            cursor.execute(query, *args)
-            data = cursor.fetchall()
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(query, *args)
+                data = cursor.fetchall()
+        except psycopg2.errors.InFailedSqlTransaction as e:
+            logger.error(e)
+            self.connection.rollback()
+            raise SqlTransactionException()
+
         return Cursor(data)
