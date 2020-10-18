@@ -7,7 +7,7 @@ from domain.Notification.notification import Notification
 class TestNotification:
     def test_create_notification(self):
         # pass
-        Notification(
+        _ = Notification(
             id="notif_id",
             description="description",
             created_at=self.gen_test_datetime(),

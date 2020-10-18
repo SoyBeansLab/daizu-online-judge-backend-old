@@ -9,7 +9,7 @@ class TestLanguage:
     def test_create_language(self):
         # pass
         # compile_command can be empty
-        Language(
+        _ = Language(
             language="Python",
             version="3.8.5",
             base_image="python:3.8.5",
@@ -20,7 +20,7 @@ class TestLanguage:
         )
 
         with pytest.raises(ValueError):
-            Language(
+            _ = Language(
                 language="",
                 version="3.8.5",
                 base_image="python:3.8.5",

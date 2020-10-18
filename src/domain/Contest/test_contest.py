@@ -9,7 +9,7 @@ class TestContest:
     def test_create_contest(self):
         # pass
         # compile_command can be empty
-        Contest(
+        _ = Contest(
             contest_id="test0001",
             contest_name="HelloWorld",
             contest_start_date=self.gen_test_datetime(),
