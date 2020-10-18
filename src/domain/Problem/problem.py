@@ -31,6 +31,7 @@ class Problem(BaseModel):
         super().__init__(
             contest_id=contest_id,
             problem_id=problem_id,
+            problem_order=problem_order,
             problem_name=problem_name,
             time_limit=time_limit,
             memory_limit=memory_limit,

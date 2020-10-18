@@ -41,6 +41,8 @@ class Contest(BaseModel):
             description=description,
             top_content=top_content,
             problem_number=problem_number,
+            created_at=created_at,
+            updated_at=updated_at,
         )
 
     @staticmethod
