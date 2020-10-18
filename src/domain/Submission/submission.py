@@ -16,6 +16,7 @@ class Submission(BaseModel):
     code_size: int
     compile_message: str
     created_at: Optional[datetime]
+    updated_at: Optional[datetime]
 
     def __init__(
         self,
@@ -30,6 +31,7 @@ class Submission(BaseModel):
         code_size: int,
         compile_message: str,
         created_at: Optional[datetime],
+        updated_at: Optional[datetime],
     ):
         super().__init__(
             submit_id=submit_id
@@ -45,6 +47,7 @@ class Submission(BaseModel):
             code_size=code_size,
             compile_message=compile_message,
             created_at=created_at,
+            updated_at=updated_at,
         )
 
     def __generate_id(self):
@@ -55,5 +58,6 @@ class Submission(BaseModel):
 
     def as_json(self):
         d = self.as_dict()
-        d["submit_date"] = str(d["submit_date"])
+        d["created_at"] = str(d["created_at"])
+        d["updated_at"] = str(d["updated_at"])
         return d
