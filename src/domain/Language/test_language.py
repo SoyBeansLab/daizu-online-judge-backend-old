@@ -20,6 +20,7 @@ class TestLanguage:
         )
 
         with pytest.raises(ValueError):
+
             _ = Language(
                 language="",
                 version="3.8.5",
