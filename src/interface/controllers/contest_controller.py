@@ -43,7 +43,7 @@ class ContestController:
         contest = self.interactor.contest(contest_id)
         if contest is None:
             message = f"404 Not Found (contest_id: {contest_id})"
-            logger.debug(message, e)
+            logger.debug(message)
             raise NotFoundException()
         resp["data"] = contest.as_json()
         resp["status"] = "Success"
