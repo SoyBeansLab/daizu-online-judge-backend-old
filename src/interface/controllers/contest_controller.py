@@ -7,15 +7,14 @@ from domain.Contest.usecase.contest_interactor import ContestInteractor
 from interface.database.sqlhandler import SqlHandler
 
 from exceptions.database import DuplicateKeyError
-from exceptions.waf import DuplicateKeyHTTPException
+from exceptions.waf import DuplicateKeyHTTPException, NotFoundException
 
 logger = getLogger("daizu").getChild("LanguageController")
 
 
 class ContestController:
-    def __init__(self, sqlhandler: SqlHandler, fastapi):
+    def __init__(self, sqlhandler: SqlHandler):
         self.interactor = ContestInteractor(ContestRepository(sqlhandler))
-        self.HTTPException = fastapi.HTTPException
 
     async def contests(self):
         recent_contests = []
@@ -43,9 +42,9 @@ class ContestController:
         resp = dict()
         contest = self.interactor.contest(contest_id)
         if contest is None:
-            raise self.HTTPException(
-                status_code=404, detail="contest not found"
-            )
+            message = f"404 Not Found (contest_id: {contest_id})"
+            logger.debug(message, e)
+            raise NotFoundException()
         resp["data"] = contest.as_json()
         resp["status"] = "Success"
 
