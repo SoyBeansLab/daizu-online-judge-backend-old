@@ -9,6 +9,7 @@ from domain.Contest.test_helper import (
     create_current_contests,
     create_recent_contests,
     create_upcoming_contests,
+    contests_to_json,
 )
 
 from exceptions.database import DuplicateKeyError
@@ -32,9 +33,9 @@ async def test_contests(mocker: MockFixture) -> None:
     controller = ContestController(None)
     want = {
         "data": {
-            "upcoming": create_upcoming_contests(5),
-            "current": create_current_contests(5),
-            "recent": create_recent_contests(5),
+            "upcoming": contests_to_json(create_upcoming_contests(5)),
+            "current": contests_to_json(create_current_contests(5)),
+            "recent": contests_to_json(create_recent_contests(5)),
         },
         "status": "Success",
     }

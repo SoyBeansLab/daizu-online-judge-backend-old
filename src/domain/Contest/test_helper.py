@@ -102,3 +102,10 @@ def create_current_contests(n: int) -> List[Contest]:
             )
         )
     return result
+
+
+def contests_to_json(contests: List[Contest]):
+    result = list()
+    for c in contests:
+        result.append(c.as_json())
+    return result
