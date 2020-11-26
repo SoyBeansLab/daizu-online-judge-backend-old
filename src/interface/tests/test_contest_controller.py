@@ -41,6 +41,7 @@ async def test_contests(mocker: MockFixture) -> None:
     }
     assert await controller.contests() == want
 
+
 @pytest.mark.asyncio
 async def test_contest(mocker: MockFixture) -> None:
     mocker.patch(
@@ -57,3 +58,33 @@ async def test_contest(mocker: MockFixture) -> None:
     mocker.patch("domain.Contest.usecase.contest_interactor.ContestInteractor.contest").return_value = None
     with pytest.raises(NotFoundException):
         await controller.contest("contest_id")
+
+
+@pytest.mark.asyncio
+async def test_store(mocker: MockFixture) -> None:
+    param = create_contest()
+
+    mocker.patch(
+        "domain.Contest.usecase.contest_interactor.ContestInteractor.store").return_value = None
+
+    controller = ContestController(None)
+    want = {
+        "status": "Success",
+        "message": "Create contest",
+    }
+    assert await controller.store(param) == want
+
+    mocker.patch(
+        "domain.Contest.usecase.contest_interactor.ContestInteractor.store").side_effect = DuplicateKeyError
+    with pytest.raises(DuplicateKeyHTTPException):
+        await controller.store(param)
+
+
+@pytest.mark.asyncio
+async def test_update(mocker: MockFixture) -> None:
+    pass
+
+
+@pytest.mark.asyncio
+async def test_delete(mocker: MockFixture) -> None:
+    pass
