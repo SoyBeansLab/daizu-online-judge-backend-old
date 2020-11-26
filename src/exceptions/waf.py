@@ -13,6 +13,11 @@ class DuplicateKeyHTTPException(APIError):
     detail = "Duplicate key"
 
 
+class NotFoundException(APIError):
+    status_code = 404
+    detail = "404 Not Found"
+
+
 class SqlTransactionException(APIError):
     status_code = 500
     detail = "Internal Server Error"

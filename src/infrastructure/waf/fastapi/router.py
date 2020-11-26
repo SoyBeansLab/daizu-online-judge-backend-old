@@ -25,7 +25,7 @@ def set_route(api: FastAPI) -> None:
 
 
 def set_route_contest(api: FastAPI) -> None:
-    contest_controller = ContestController(SqlHandler(), fastapi)
+    contest_controller = ContestController(SqlHandler())
 
     api.add_api_route(
         "/contests",
